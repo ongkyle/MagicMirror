@@ -105,6 +105,10 @@ let config = {
 				broadcastNewsUpdates: true
 			}
 		},
+		{
+      module: "recipe-recommend",
+      position: "upper_third",
+    },
 	]
 };
 
