@@ -1,7 +1,7 @@
 Module.register("recipe-recommend", {
 	// Default module config.
 	defaults: {
-		text: "Recipe Recommend!",
+		text: "Recipe Recommend!"
 	},
 
 	getTemplate: function () {
