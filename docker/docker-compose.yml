@@ -12,6 +12,5 @@ services:
       - ../mounts/css:/opt/magic_mirror/css
     restart: unless-stopped
     command:
-      - npm
-      - run
-      - server
+      - node
+      - serveronly/index.js
