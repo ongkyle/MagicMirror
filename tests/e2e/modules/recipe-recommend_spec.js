@@ -5,7 +5,7 @@ describe("Test recipe-recommend module", () => {
 		await helpers.stopApplication();
 	});
 
-	describe("helloworld set config text", () => {
+	describe("recipe-recommend set config text", () => {
 		beforeAll((done) => {
 			helpers.startApplication("tests/configs/modules/recipe-recommend/recipe-recommend.js");
 			helpers.getDocument(done);
