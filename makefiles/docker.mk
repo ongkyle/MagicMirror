@@ -18,7 +18,7 @@ docker-build-debian: ## Build Dockerfile-debian
 
 .PHONY: docker-compose
 docker-up: ## Stop and start the mm container
-	cd ./docker/ && docker compose up --force-recreate --build -d
+	cd ./docker/ && docker compose up --force-recreate -d
 
 .PHONY: docker-down
 docker-down: ## Stop the mm container
