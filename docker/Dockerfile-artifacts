@@ -1,0 +1,55 @@
+ARG NODE_VERSION
+FROM node:${NODE_VERSION}-alpine as builder
+
+WORKDIR /opt/magic_mirror
+
+COPY scripts/build_info.sh /tmp
+
+ADD  build_deps.tar /opt/magic_mirror/
+
+CMD find /opt/magic_mirror/modules \
+         /opt/magic_mirror/vendor/ \
+         /opt/magic_mirror/css/ \
+         /opt/magic_mirror/config/ \
+         /opt/magic_mirror/fonts/ \
+         /opt/magic_mirror/package.json \
+
+
+RUN set -e; \
+    apk add --no-cache git; \
+    chmod +x /tmp/build_info.sh;
+
+ARG GIT_INFO
+ARG buildarch
+ARG debug
+RUN set -e; \
+    node -v; \
+    if [ -z "${debug}" ]; then \
+      npmargs="--omit=dev"; \
+      if [ -z "${buildarch}" ]; then \
+        npmargs="${npmargs} --omit=optional"; \
+      elif [ "${buildarch}" = "arm32v7/" ]; then \
+        npmargs="${npmargs} --arch=armv7l"; \
+      elif [ "${buildarch}" = "arm64v8/" ]; then \
+        npmargs="${npmargs} --arch=arm64"; \
+      fi; \
+    fi; \
+    echo "now executing: npm install ${npmargs}"; \
+    ls /opt/magic_mirror; \
+    npm install ${npmargs}; \
+    cat package.json; \
+    sed -i "s:address\: \"localhost\":address\: \"0.0.0.0\":" config/config.js.sample; \
+    sed -i "s:ipWhitelist\: \[.*\],:ipWhitelist\: \[\],:" config/config.js.sample; \
+    mkdir mount_ori; \
+    mv modules mount_ori/; \
+    mv config mount_ori/; \
+    mv css mount_ori/; \
+    # remove not needed node_modules stuff
+    cp /tmp/build_info.sh .; \
+    ./build_info.sh "Artifacts" "$GIT_INFO"; \
+    rm -f build_info.sh;
+
+FROM scratch
+LABEL maintainer="Kyle Ong"
+
+COPY --from=builder /opt/magic_mirror /opt/magic_mirror
