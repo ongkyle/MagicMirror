@@ -4,7 +4,9 @@
 : ${IMG_TAG:="registry.gitlab.com/ongkyle/magicmirror:buildkit-artifacts-dev"}
 
 main() {
-  docker build . -f docker/Dockerfile-artifacts \
+  docker build . \
+        --rm \
+        -f docker/Dockerfile-artifacts \
         --build-arg NODE_VERSION=${NODE_VERSION} \
         -t ${IMG_TAG};
 }

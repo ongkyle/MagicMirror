@@ -8,7 +8,9 @@
 
 
 main() {
-  docker build . -f docker/Dockerfile-debian \
+  docker build . \
+          --rm \
+          -f docker/Dockerfile-debian \
           --build-arg DEBIAN_VERSION=${DEBIAN_VERSION} \
           --build-arg BUILDER_IMG=${BUILDER_IMG} \
           --build-arg GIT_INFO=${GIT_INFO} \
