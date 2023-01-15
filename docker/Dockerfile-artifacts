@@ -5,15 +5,7 @@ WORKDIR /opt/magic_mirror
 
 COPY scripts/build_info.sh /tmp
 
-ADD  build_deps.tar /opt/magic_mirror/
-
-CMD find /opt/magic_mirror/modules \
-         /opt/magic_mirror/vendor/ \
-         /opt/magic_mirror/css/ \
-         /opt/magic_mirror/config/ \
-         /opt/magic_mirror/fonts/ \
-         /opt/magic_mirror/package.json \
-
+ADD . ./
 
 RUN set -e; \
     apk add --no-cache git; \
@@ -35,7 +27,6 @@ RUN set -e; \
       fi; \
     fi; \
     echo "now executing: npm install ${npmargs}"; \
-    ls /opt/magic_mirror; \
     npm install ${npmargs}; \
     cat package.json; \
     sed -i "s:address\: \"localhost\":address\: \"0.0.0.0\":" config/config.js.sample; \

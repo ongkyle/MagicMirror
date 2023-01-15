@@ -1,18 +1,12 @@
 #!/bin/sh
 
-main() {
-  node_version=$(node -v)
-  echo "taring package.json modules/ config/ css/ vendor/ and fonts/."
-  tar -cf build_deps.tar package.json \
-                          modules/ \
-                          config/ \
-                          css/ \
-                          vendor/ \
-                          fonts/;
+: ${NODE_VERSION:="16.19.0"}
+: ${IMG_TAG:="registry.gitlab.com/ongkyle/magicmirror:buildkit-artifacts-dev"}
 
+main() {
   docker build . -f docker/Dockerfile-artifacts \
-        --build-arg NODE_VERSION=16.19.0 \
-        -t registry.gitlab.com/ongkyle/magicmirror:buildkit-artifacts-dev;
+        --build-arg NODE_VERSION=${NODE_VERSION} \
+        -t ${IMG_TAG};
 }
 
 main "$@"
