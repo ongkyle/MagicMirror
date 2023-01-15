@@ -6,7 +6,7 @@
 .FORCE:
 
 .PHONY: docker-build
-docker-build: docker-build-artifacts docker-build-debian ## Build Dockerfile-artifacts and Dockerfile-debian
+docker-build: docker-build-artifacts docker-build-debian docker-prune ## Build Dockerfile-artifacts and Dockerfile-debian
 
 .PHONY: docker-build-artifacts
 docker-build-artifacts: ## Build Dockerfile-artifacts
@@ -26,4 +26,8 @@ docker-down: ## Stop the mm container
 
 .PHONY: redeploy
 redeploy: docker-build docker-up ## Rebuild and restart containers
+
+.PHONY: docker-prune
+docker-prune: ## Prune unused images
+	docker image prune -f
 
