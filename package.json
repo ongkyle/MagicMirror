@@ -76,10 +76,12 @@
 		"colors": "^1.4.0",
 		"console-stamp": "^3.0.6",
 		"digest-fetch": "^1.3.0",
+		"dotenv": "^16.0.3",
 		"eslint": "^8.24.0",
 		"express": "^4.18.1",
 		"express-ipfilter": "^1.3.1",
 		"feedme": "^2.0.2",
+		"fetch": "^1.1.0",
 		"helmet": "^6.0.0",
 		"iconv-lite": "^0.6.3",
 		"luxon": "^1.28.0",
@@ -87,12 +89,14 @@
 		"moment": "^2.29.4",
 		"node-fetch": "^2.6.7",
 		"node-ical": "^0.15.1",
+		"openai": "^3.1.0",
 		"socket.io": "^4.5.2"
 	},
 	"_moduleAliases": {
 		"node_helper": "js/node_helper.js",
 		"logger": "js/logger.js",
-		"fetch": "js/fetch.js"
+		"fetch": "js/fetch.js",
+		"openai-api": "js/openai-api.js"
 	},
 	"engines": {
 		"node": ">=14"
