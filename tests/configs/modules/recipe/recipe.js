@@ -1,7 +1,7 @@
 let config = {
 	modules: [
 		{
-			module: "recipe-recommend",
+			module: "recipe",
 			position: "bottom_bar",
 			config: {
 				text: "Test recipe-recommend Module"
