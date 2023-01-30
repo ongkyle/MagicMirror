@@ -7,7 +7,15 @@
 Module.register("recipe", {
 	// Default module config.
 	defaults: {
-		text: "Recipe!"
+		text: "Recipe!",
+		openAI: {
+			options: {
+				method: "POST",
+				hostName: "api.openai.com",
+				path: "/v1/completions?model=text-davinci-003",
+				contentType: "application/json"
+			}
+		}
 	},
 
 	getTemplate: function () {
@@ -16,5 +24,9 @@ Module.register("recipe", {
 
 	getTemplateData: function () {
 		return this.config;
+	},
+
+	getDefaults: function () {
+		return this.defaults;
 	}
 });

@@ -1,37 +1,30 @@
 const helpers = require("../global-setup");
 
-describe("Test recipe-recommend module", () => {
+describe("Test recipe module", () => {
 	afterAll(async () => {
 		await helpers.stopApplication();
 	});
 
-	describe("recipe-recommend set config text", () => {
+	describe("recipe module", () => {
 		beforeAll((done) => {
 			helpers.startApplication("tests/configs/modules/recipe/recipe.js");
 			helpers.getDocument(done);
 		});
 
-		it("Test message recipe-recommend module", (done) => {
+		it("displays recipes at the configured interval", (done) => {
+			ignoreVal = "";
 			helpers.waitForElement(".recipe").then((elem) => {
 				done();
 				expect(elem).not.toBe(null);
-				expect(elem.textContent).toContain("Test recipe-recommend Module");
+				expect(elem.textContent).toContain("Korean Spicy Bulgogi");
+				ignoreVal = elem.textContent;
+			});
+
+			helpers.waitForElement(".recipe", ignoreVal).then((elem) => {
+				done();
+				expect(elem).not.toBe(null);
+				expect(elem.textContent).toContain("Chinese Chicken Congee");
 			});
 		});
 	});
-
-	//	describe("recipe-recommend default config text", () => {
-	//		beforeAll((done) => {
-	//			helpers.startApplication("tests/configs/modules/recipe-recommend/recipe-recommend_default.js");
-	//			helpers.getDocument(done);
-	//		});
-	//
-	//		it("Test message recipe-recommend module", (done) => {
-	//			helpers.waitForElement(".recipe-recommend").then((elem) => {
-	//				done();
-	//				expect(elem).not.toBe(null);
-	//				expect(elem.textContent).toContain("Recipe Recommend!");
-	//			});
-	//		});
-	//	});
 });

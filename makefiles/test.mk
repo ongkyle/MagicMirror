@@ -7,4 +7,8 @@
 
 .PHONY: test-e2e
 test-e2e: ## Run jest tests in tests/e2e
-	./scripts/run-e2e.sh
+	./scripts/run-test.sh
+
+.PHONY: test-unit
+test-unit: ## Run jest tests in tests/e2e
+	PROJECT=unit TEST_PATH_PATTERN="tests/unit/functions/recipe_spec.js" ./scripts/run-test.sh

@@ -106,7 +106,7 @@ let config = {
 			}
 		},
 		{
-      module: "recipe-recommend",
+      module: "recipe",
       position: "upper_third",
     },
 	]
