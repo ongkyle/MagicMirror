@@ -8,6 +8,7 @@ Module.register("recipe", {
 	// Default module config.
 	defaults: {
 		text: "Recipe!",
+		wrapperName: "thin xlarge bright pre-line",
 		openAI: {
 			options: {
 				method: "POST",
@@ -17,6 +18,8 @@ Module.register("recipe", {
 			}
 		}
 	},
+
+	recipeData: "",
 
 	getTemplate: function () {
 		return "helloworld.njk";
@@ -28,5 +31,32 @@ Module.register("recipe", {
 
 	getDefaults: function () {
 		return this.defaults;
+	},
+
+	getDom: function () {
+		const wrapper = document.createElement("div");
+		wrapper.className = this.defaults.wrapperName;
+
+		recipe = this.createRecipeSpan();
+		wrapper.appendChild(recipe);
+
+		return wrapper;
+	},
+
+	createRecipeSpan: function () {
+		const parts = this.getRecipeData().split("\n");
+		const recipe = document.createElement("span");
+
+		for (const part of parts) {
+			recipe.appendChild(document.createTextNode(part));
+			recipe.appendChild(document.createElement("br"));
+		}
+		// remove the last break
+		recipe.lastElementChild.remove();
+		return recipe;
+	},
+
+	getRecipeData: function () {
+		return this.recipeData;
 	}
 });
