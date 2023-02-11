@@ -119,6 +119,9 @@
 				],
 				"testPathIgnorePatterns": [
 					"<rootDir>/tests/unit/mocks"
+				],
+				"modulePaths": [
+					"<rootDir>/js/"
 				]
 			},
 			{

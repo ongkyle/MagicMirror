@@ -34,13 +34,7 @@ Module.register("recipe", {
 	},
 
 	getDom: function () {
-		const wrapper = document.createElement("div");
-		wrapper.className = this.defaults.wrapperName;
-
-		recipe = this.createRecipeSpan();
-		wrapper.appendChild(recipe);
-
-		return wrapper;
+		return this.createRecipeWrapper();
 	},
 
 	createRecipeSpan: function () {
@@ -54,6 +48,16 @@ Module.register("recipe", {
 		// remove the last break
 		recipe.lastElementChild.remove();
 		return recipe;
+	},
+
+	createRecipeWrapper: function () {
+		const wrapper = document.createElement("div");
+		wrapper.className = this.defaults.wrapperName;
+
+		recipe = this.createRecipeSpan();
+		wrapper.appendChild(recipe);
+
+		return wrapper;
 	},
 
 	getRecipeData: function () {
