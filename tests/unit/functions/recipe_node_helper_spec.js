@@ -1,12 +1,6 @@
 const Helper = require("../../../modules/default/recipe/node_helper.js");
 
 describe("Functions into recipe/node_heler.js", function () {
-	module = {};
-	module.definitions = {};
-	module.exports = function (name, helperDefinition) {
-		Module.definitions[name] = helperDefinition;
-	};
-
 	beforeEach(function () {
 		// load recipe.js
 

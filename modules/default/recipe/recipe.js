@@ -1,9 +1,3 @@
-/* MagicMirror²
- * Module: HelloWorld
- *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
- */
 Module.register("recipe", {
 	// Default module config.
 	defaults: {

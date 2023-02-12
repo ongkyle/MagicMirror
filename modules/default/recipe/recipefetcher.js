@@ -1,110 +1,92 @@
 const Log = require("logger");
-const openAIApi = require("openai-api");
-const fetch = require("fetch");
 
 const RecipeFetcher = function (apiKey, params, updateInterval) {
-	let reloadTimer = null;
-	let events = "";
+	this.reloadTimer = null;
+	this.events = "";
 
-	let fetchFailedCallback = function () {};
-	let eventsReceivedCallback = function () {};
+	this.fetchFailedCallback = function () {};
+	this.eventsReceivedCallback = function () {};
+
+	this.fetcher = null;
+	this.apiKey = apiKey;
+	this.params = params;
 
 	/**
 	 * Initiates calendar fetch.
 	 */
-	const fetchRecipe = () => {
-		clearTimeout(reloadTimer);
-		reloadTimer = null;
+	// const fetchRecipe = () => {
+	// 	clearTimeout(reloadTimer);
+	// 	reloadTimer = null;
 
-		try {
-			awaitCompletion()
-				.then((response) => response.data)
-				.then((responseData) => {
-					try {
-						events = responseData.choices[0].text;
-						Log.log("Recipe-Fetcher: parsed data=" + events);
-						Log.log("Recipe-Fetcher: got responseData=" + JSON.stringify(responseData));
-					} catch (error) {
-						fetchFailedCallback(this, error);
-						scheduleTimer();
-					}
-					this.broadcastEvents();
-					scheduleTimer();
-				});
-		} catch (error) {
-			if (error.response) {
-				ta;
-				Log.error(error.response.status, error.response.data);
-			} else {
-				Log.error(`Error with OpenAI API request: ${error.message}`);
-			}
-			fetchFailedCallback(this, error);
-			scheduleTimer();
+	// 	try {
+	// 		awaitCompletion()
+	// 			.then((response) => response.data)
+	// 			.then((responseData) => {
+	// 				try {
+	// 					events = responseData.choices[0].text;
+	// 					Log.log("Recipe-Fetcher: parsed data=" + events);
+	// 					Log.log("Recipe-Fetcher: got responseData=" + JSON.stringify(responseData));
+	// 				} catch (error) {
+	// 					fetchFailedCallback(this, error);
+	// 					scheduleTimer();
+	// 				}
+	// 				this.broadcastEvents();
+	// 				scheduleTimer();
+	// 			});
+	// 	} catch (error) {
+	// 		if (error.response) {
+	// 			ta;
+	// 			Log.error(error.response.status, error.response.data);
+	// 		} else {
+	// 			Log.error(`Error with OpenAI API request: ${error.message}`);
+	// 		}
+	// 		fetchFailedCallback(this, error);
+	// 		scheduleTimer();
+	// 	}
+	// 	this.broadcastEvents();
+	// 	scheduleTimer();
+	// };
+
+	this.initFetcher = function () {
+		if (this.fetcher === null) {
+			this.fetcher = global.fetch(this.apiKey, this.params);
 		}
-		this.broadcastEvents();
-		scheduleTimer();
 	};
 
-	const awaitCompletion = async () => {
-		let fetcher = null;
-		if (fetcher === null) {
-			fetcher = fetch(apiKey);
-		}
-		return fetcher.createCompletion(params);
+	this.clearTimeout = function (time) {
+		this.clearTimeout(time);
 	};
 
-	/**
-	 * Schedule the timer for the next update.
-	 */
-	const scheduleTimer = function () {
-		clearTimeout(reloadTimer);
-		reloadTimer = setTimeout(function () {
+	this.setTimeout = function (time) {
+		this.reloadTimer = setTimeout(function () {
 			fetchRecipe();
-		}, updateInterval);
+		}, time);
 	};
 
-	/* public methods */
+	this.scheduleTimer = function () {
+		this.clearTimeout(this.reloadTimer);
+		this.setTimeout(updateInterval);
+	};
 
-	/**
-	 * Initiate fetchCalendar();
-	 */
 	this.startFetch = function () {
-		fetchRecipe();
+		this.fetchRecipe();
 	};
 
-	/**
-	 * Broadcast the existing events.
-	 */
 	this.broadcastEvents = function () {
-		Log.info("Recipe-Fetcher: Broadcasting " + events);
-		eventsReceivedCallback(this);
+		Log.info("Recipe-Fetcher: Broadcasting " + this.events);
+		this.eventsReceivedCallback(this);
 	};
 
-	/**
-	 * Sets the on success callback
-	 *
-	 * @param {Function} callback The on success callback.
-	 */
 	this.onReceive = function (callback) {
-		eventsReceivedCallback = callback;
+		this.eventsReceivedCallback = callback;
 	};
 
-	/**
-	 * Sets the on error callback
-	 *
-	 * @param {Function} callback The on error callback.
-	 */
 	this.onError = function (callback) {
-		fetchFailedCallback = callback;
+		this.fetchFailedCallback = callback;
 	};
 
-	/**
-	 * Returns current available events for this fetcher.
-	 *
-	 * @returns {object[]} The current available events for this fetcher.
-	 */
-	this.events = function () {
-		return events;
+	this.getEvents = function () {
+		return this.events;
 	};
 };
 
