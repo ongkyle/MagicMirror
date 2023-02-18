@@ -53,6 +53,9 @@ describe("Functions into recipe/recipefetcher .js", function () {
 	beforeEach(function () {
 		recipeFetcher = new Fetcher(expectedApiKey, expectedUrl, expectedData, expectedUpdateInterval);
 	});
+	afterAll(function () {
+		jest.restoreAllMocks();
+	});
 
 	describe("fetchRecipe", function () {
 		beforeEach(function () {
@@ -74,6 +77,9 @@ describe("Functions into recipe/recipefetcher .js", function () {
 		});
 		it("returns the expected requestOptions", function () {
 			expect(observed).toEqual(expectedRequestOptions);
+		});
+		afterEach(function () {
+			jest.restoreAllMocks();
 		});
 	});
 
@@ -111,6 +117,9 @@ describe("Functions into recipe/recipefetcher .js", function () {
 			expect(setTimeoutMock).toHaveBeenCalledTimes(1);
 			expect(setTimeoutMock).toHaveBeenCalledWith(expectedUpdateInterval);
 		});
+		afterEach(function () {
+			jest.restoreAllMocks();
+		});
 	});
 
 	describe("broadcastEvents", function () {
@@ -121,6 +130,9 @@ describe("Functions into recipe/recipefetcher .js", function () {
 		});
 		it("calls eventsReceivedCallback", function () {
 			expect(mock).toHaveBeenCalledTimes(1);
+		});
+		afterEach(function () {
+			jest.restoreAllMocks();
 		});
 	});
 
@@ -133,6 +145,9 @@ describe("Functions into recipe/recipefetcher .js", function () {
 			expect(recipeFetcher.eventsReceivedCallback).not.toBe(undefined);
 			expect(recipeFetcher.eventsReceivedCallback).toEqual(fake);
 		});
+		afterEach(function () {
+			jest.restoreAllMocks();
+		});
 	});
 
 	describe("onError", function () {
@@ -143,6 +158,9 @@ describe("Functions into recipe/recipefetcher .js", function () {
 		it("sets eventsReceivedCallback", function () {
 			expect(recipeFetcher.fetchFailedCallback).not.toBe(undefined);
 			expect(recipeFetcher.fetchFailedCallback).toEqual(fake);
+		});
+		afterEach(function () {
+			jest.restoreAllMocks();
 		});
 	});
 
@@ -156,6 +174,9 @@ describe("Functions into recipe/recipefetcher .js", function () {
 		});
 		it("sets eventsReceivedCallback", function () {
 			expect(observedEvents).toEqual(expectedEvents);
+		});
+		afterEach(function () {
+			jest.restoreAllMocks();
 		});
 	});
 });

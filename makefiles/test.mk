@@ -6,9 +6,13 @@
 .FORCE:
 
 .PHONY: test-e2e
+test-e2e: PROJECT?=e2e
+test-e2e: TEST_PATH_PATTERN?="tests/e2e/modules/recipe_spec.js"
 test-e2e: ## Run jest tests in tests/e2e
-	./scripts/run-test.sh
+	PROJECT=$(PROJECT) TEST_PATH_PATTERN=$(TEST_PATH_PATTERN) ./scripts/run-test.sh
 
 .PHONY: test-unit
+test-unit: PROJECT?=unit
+test-unit: TEST_PATH_PATTERN?="tests/unit/functions/recipe.*_spec.js"
 test-unit: ## Run jest tests in tests/e2e
-	PROJECT=unit TEST_PATH_PATTERN="tests/unit/functions/recipe.*_spec.js" ./scripts/run-test.sh
+	 PROJECT=$(PROJECT) TEST_PATH_PATTERN=$(TEST_PATH_PATTERN) ./scripts/run-test.sh

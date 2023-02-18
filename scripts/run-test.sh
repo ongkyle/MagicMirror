@@ -6,7 +6,7 @@
 : ${NODE_ENV:="TEST"}
 
 main() {
-  NODE_ENV="${NODE_ENV}" jest --selectProjects "${PROJECT}" -i --forceExit --runTestsByPath=1 --testPathPattern="${TEST_PATH_PATTERN}"
+  NODE_ENV="${NODE_ENV}" jest --selectProjects "${PROJECT}" -i --forceExit --runTestsByPath=1 --testPathPattern="${TEST_PATH_PATTERN}" --verbose
 }
 
 main "$@"

@@ -24,6 +24,20 @@ Module.register("recipe", {
 
 	recipeData: "",
 
+	start: function () {
+		Log.info("Starting module: " + this.name);
+
+		this.recipeData = "";
+
+		this.loaded = false;
+
+		this.addRecipe();
+
+		// setInterval(() => {
+		// 	this.updateDom(this.config.fadeSpeed);
+		// }, this.config.updateInterval);
+	},
+
 	socketNotificationReceived: function (notification, payload) {
 		if (notification === "RECIPE_EVENTS") {
 			this.recipeData = payload.events;

@@ -11,6 +11,7 @@ const RecipeFetcher = function (apiKey, url, data, updateInterval) {
 	this.apiKey = apiKey;
 	this.data = data;
 	this.url = url;
+	this.updateInterval = updateInterval;
 
 	this.fetchRecipe = function () {
 		this.clearTimeout(this.reloadTimer);
@@ -67,14 +68,15 @@ const RecipeFetcher = function (apiKey, url, data, updateInterval) {
 		});
 	};
 
-	this.clearTimeout = function (time) {
-		clearTimeout(time);
+	this.setTimeout = function (time) {
+		fetcher = new RecipeFetcher(this.apiKey, this.url, this.data, this.updateInterval);
+		this.reloadTimer = setTimeout(function () {
+			fetcher.fetchRecipe();
+		}, time);
 	};
 
-	this.setTimeout = function (time) {
-		this.reloadTimer = setTimeout(function () {
-			fetchRecipe();
-		}, time);
+	this.clearTimeout = function (time) {
+		clearTimeout(time);
 	};
 
 	this.scheduleTimer = function () {

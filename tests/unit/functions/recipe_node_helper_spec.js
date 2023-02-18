@@ -45,7 +45,7 @@ describe("Functions into recipe/node_heler.js", function () {
 			recipeNodeHelper.initializeFetcher = mockInitializer;
 			recipeNodeHelper.configureOnReceiveCallback = mockOnReceive;
 			recipeNodeHelper.configureOnErrorCallback = mockOnError;
-			recipeNodeHelper.start = mockStart;
+			recipeNodeHelper.startFetch = mockStart;
 
 			recipeNodeHelper.createFetcher(expectedApiKey, expectedParams, expectedUpdateInterval, expectedIdentifier);
 		});

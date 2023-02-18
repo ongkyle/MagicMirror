@@ -3,6 +3,11 @@ const RecipeFetcher = require("./recipefetcher.js");
 const Log = require("logger");
 
 module.exports = NodeHelper.create({
+	start() {
+		Log.log("Starting node helper for: " + this.name);
+		this.fetchers = [];
+	},
+
 	socketNotificationReceived: function (notification, payload) {
 		if (notification === "ADD_RECIPE") {
 			this.createFetcher(payload.apiKey, payload.queryParams, payload.updateInterval, payload.id);
@@ -17,7 +22,7 @@ module.exports = NodeHelper.create({
 
 		this.configureOnReceiveCallback(fetcher, identifier);
 		this.configureOnErrorCallback(fetcher);
-		this.start(fetcher);
+		this.startFetch(fetcher);
 	},
 
 	broadcastEvents: function (events, identifier) {
@@ -43,7 +48,7 @@ module.exports = NodeHelper.create({
 		});
 	},
 
-	start(fetcher) {
+	startFetch(fetcher) {
 		fetcher.startFetch();
 	}
 });
