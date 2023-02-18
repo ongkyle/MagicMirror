@@ -56,6 +56,14 @@ Module.register("recipe", {
 		return this.defaults;
 	},
 
+	getConfigOrDefaults: function () {
+		defaults = this.getDefaults();
+		return {
+			...defaults,
+			...this.config
+		};
+	},
+
 	getOpenAI: function () {
 		return this.getDefaults().openAI;
 	},

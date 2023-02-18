@@ -2,7 +2,8 @@ let config = {
 	modules: [
 		{
 			module: "recipe",
-			position: "bottom_bar"
+			position: "bottom_bar",
+			config: {}
 		}
 	]
 };

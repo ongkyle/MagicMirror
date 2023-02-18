@@ -30,6 +30,26 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 		animationSpeed: 2000
 	};
 
+	const expectedConfig = {
+		text: "Recipe!",
+		wrapperName: "thin xlarge bright pre-line",
+		openAI: {
+			data: {
+				model: "text-davinci-003",
+				prompt: "reccommend an italian food recipe",
+				temperature: 0,
+				max_tokens: 99,
+				top_p: 0.5,
+				frequency_penalty: 0.2,
+				presence_penalty: 0
+			},
+			apiKey: "test",
+			url: "https://api.openai.com/v1/completions?model=text-davinci-003"
+		},
+		updateInterval: 3 * ONE_MINUTE,
+		animationSpeed: 1000
+	};
+
 	beforeAll(function () {
 		// load recipe.js
 		const recipeModule = require("../../../modules/default/recipe/recipe.js");
@@ -131,6 +151,58 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 		it("calls updateDom", function () {
 			expect(updateDomMock).toHaveBeenCalledTimes(1);
 			expect(updateDomMock).toHaveBeenCalledWith(expectedDefaults.animationSpeed);
+		});
+
+		afterEach(function () {
+			jest.restoreAllMocks();
+		});
+	});
+
+	describe("getConfigOrDefaults", function () {
+		describe("when the config overwrites all defaults", function () {
+			beforeEach(function () {
+				Module.definitions.recipe.config = expectedConfig;
+				observed = Module.definitions.recipe.getConfigOrDefaults();
+			});
+			it("returns the config", function () {
+				expect(observed).toEqual(expectedConfig);
+			});
+			afterEach(function () {
+				Module.definitions.recipe.config = undefined;
+			});
+		});
+		describe("when there is no config", function () {
+			beforeEach(function () {
+				observed = Module.definitions.recipe.getConfigOrDefaults();
+			});
+			it("returns the defaults", function () {
+				expect(observed).toEqual(expectedDefaults);
+			});
+		});
+		describe("when the config overwrites some of the defaults", function () {
+			beforeEach(function () {
+				Module.definitions.recipe.config = {
+					openAI: {
+						data: {
+							prompt: "reccommend an italian food recipe",
+							temperature: 0,
+							max_tokens: 99,
+							top_p: 0.5,
+							frequency_penalty: 0.2,
+							presence_penalty: 0
+						}
+					},
+					updateInterval: 3 * ONE_MINUTE,
+					animationSpeed: 1000
+				};
+				observed = Module.definitions.recipe.getConfigOrDefaults();
+			});
+			it("returns a combination of the config and defaults", function () {
+				expect(observed).toEqual({
+					...expectedDefaults,
+					...Module.definitions.recipe.config
+				});
+			});
 		});
 
 		afterEach(function () {
