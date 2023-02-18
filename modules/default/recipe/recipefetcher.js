@@ -1,60 +1,74 @@
 const Log = require("logger");
+const NodeHelper = require("node_helper");
 
-const RecipeFetcher = function (apiKey, params, updateInterval) {
+const RecipeFetcher = function (apiKey, url, data, updateInterval) {
 	this.reloadTimer = null;
 	this.events = "";
 
 	this.fetchFailedCallback = function () {};
 	this.eventsReceivedCallback = function () {};
 
-	this.fetcher = null;
 	this.apiKey = apiKey;
-	this.params = params;
+	this.data = data;
+	this.url = url;
 
-	/**
-	 * Initiates calendar fetch.
-	 */
-	// const fetchRecipe = () => {
-	// 	clearTimeout(reloadTimer);
-	// 	reloadTimer = null;
+	this.fetchRecipe = function () {
+		this.clearTimeout(this.reloadTimer);
+		request = this.buildRequest();
 
-	// 	try {
-	// 		awaitCompletion()
-	// 			.then((response) => response.data)
-	// 			.then((responseData) => {
-	// 				try {
-	// 					events = responseData.choices[0].text;
-	// 					Log.log("Recipe-Fetcher: parsed data=" + events);
-	// 					Log.log("Recipe-Fetcher: got responseData=" + JSON.stringify(responseData));
-	// 				} catch (error) {
-	// 					fetchFailedCallback(this, error);
-	// 					scheduleTimer();
-	// 				}
-	// 				this.broadcastEvents();
-	// 				scheduleTimer();
-	// 			});
-	// 	} catch (error) {
-	// 		if (error.response) {
-	// 			ta;
-	// 			Log.error(error.response.status, error.response.data);
-	// 		} else {
-	// 			Log.error(`Error with OpenAI API request: ${error.message}`);
-	// 		}
-	// 		fetchFailedCallback(this, error);
-	// 		scheduleTimer();
-	// 	}
-	// 	this.broadcastEvents();
-	// 	scheduleTimer();
-	// };
+		this.awaitFetch(request)
+			.then((responseData) => {
+				try {
+					this.parse(responseData);
+				} catch (error) {
+					this.fetchFailedCallback(this, error);
+					this.scheduleTimer();
+					return;
+				}
+			})
+			.catch((error) => {
+				if (error.response) {
+					Log.error(error.response.status, error.response.data);
+				} else {
+					Log.error(`Error with OpenAI API request: ${error.message}`);
+				}
+				this.fetchFailedCallback(this, error);
+				this.scheduleTimer();
+			});
 
-	this.initFetcher = function () {
-		if (this.fetcher === null) {
-			this.fetcher = global.fetch(this.apiKey, this.params);
-		}
+		this.broadcastEvents();
+		this.scheduleTimer();
+	};
+
+	this.buildRequest = function () {
+		const headers = new Headers();
+		headers.append("Authorization", "Bearer " + this.apiKey);
+		headers.append("Content-Type", "application/json");
+		const raw = JSON.stringify(this.data);
+		return {
+			method: "POST",
+			headers: headers,
+			body: raw,
+			redirect: "follow"
+		};
+	};
+
+	this.parse = function (data) {
+		this.events = data.choices[0].text;
+		Log.log("Recipe-Fetcher: parsed data=" + events);
+		Log.log("Recipe-Fetcher: got responseData=" + JSON.stringify(responseData));
+	};
+
+	this.awaitFetch = async function (request) {
+		const result = await global.fetch(this.url, request);
+		const response = await result.data;
+		return new Promise((resolve) => {
+			resolve(response);
+		});
 	};
 
 	this.clearTimeout = function (time) {
-		this.clearTimeout(time);
+		clearTimeout(time);
 	};
 
 	this.setTimeout = function (time) {
@@ -66,10 +80,6 @@ const RecipeFetcher = function (apiKey, params, updateInterval) {
 	this.scheduleTimer = function () {
 		this.clearTimeout(this.reloadTimer);
 		this.setTimeout(updateInterval);
-	};
-
-	this.startFetch = function () {
-		this.fetchRecipe();
 	};
 
 	this.broadcastEvents = function () {

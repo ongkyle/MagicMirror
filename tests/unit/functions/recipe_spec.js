@@ -8,27 +8,36 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 		Module.definitions[name] = moduleDefinition;
 	};
 
+	const ONE_MINUTE = 60 * 1000;
+
+	const expectedDefaults = {
+		text: "Recipe!",
+		wrapperName: "thin xlarge bright pre-line",
+		openAI: {
+			data: {
+				model: "text-davinci-003",
+				prompt: "reccommend an asian food recipe",
+				temperature: 0,
+				max_tokens: 100,
+				top_p: 1,
+				frequency_penalty: 0.2,
+				presence_penalty: 0
+			},
+			apiKey: "test",
+			url: "https://api.openai.com/v1/completions?model=text-davinci-003"
+		},
+		updateInterval: 2 * ONE_MINUTE,
+		animationSpeed: 2000
+	};
+
 	beforeAll(function () {
 		// load recipe.js
 		const recipeModule = require("../../../modules/default/recipe/recipe.js");
 	});
 
 	describe("getDefaults", function () {
-		const expected = {
-			text: "Recipe!",
-			wrapperName: "thin xlarge bright pre-line",
-			openAI: {
-				options: {
-					method: "POST",
-					hostName: "api.openai.com",
-					path: "/v1/completions?model=text-davinci-003",
-					contentType: "application/json"
-				}
-			}
-		};
-
 		it("sets the expected defaults", function () {
-			expect(Module.definitions.recipe.getDefaults()).toEqual(expected);
+			expect(Module.definitions.recipe.getDefaults()).toEqual(expectedDefaults);
 		});
 	});
 
@@ -71,6 +80,61 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 					entry = entries.next();
 				}
 			}
+		});
+	});
+
+	describe("addRecipe", function () {
+		beforeEach(function () {
+			mock = jest.fn();
+			Module.definitions.recipe.sendSocketNotification = mock;
+			Module.definitions.recipe.addRecipe();
+		});
+		it("calls sendSocketNotification", function () {
+			expect(mock).toHaveBeenCalledTimes(1);
+			expect(mock).toHaveBeenCalledWith("ADD_RECIPE", {
+				id: undefined,
+				apiKey: expectedDefaults.openAI.apiKey,
+				url: expectedDefaults.openAI.url,
+				data: expectedDefaults.openAI.data,
+				updateInterval: expectedDefaults.updateInterval
+			});
+		});
+		afterEach(function () {
+			jest.restoreAllMocks();
+		});
+	});
+
+	describe("getOpenAI", function () {
+		beforeEach(function () {
+			observed = Module.definitions.recipe.getOpenAI();
+		});
+		it("returns openAI", function () {
+			expect(observed).toEqual(expectedDefaults.openAI);
+		});
+	});
+
+	describe("socketNotificationReceived", function () {
+		expectedNotification = "RECIPE_EVENTS";
+		expectedPayload = { events: "test" };
+
+		beforeEach(function () {
+			updateDomMock = jest.fn();
+			Module.definitions.recipe.updateDom = updateDomMock;
+			Module.definitions.recipe.socketNotificationReceived(expectedNotification, expectedPayload);
+		});
+
+		it("sets recipeData", function () {
+			expect(Module.definitions.recipe.recipeData).toEqual(expectedPayload.events);
+			expect(Module.definitions.recipe.loaded).toEqual(true);
+		});
+
+		it("calls updateDom", function () {
+			expect(updateDomMock).toHaveBeenCalledTimes(1);
+			expect(updateDomMock).toHaveBeenCalledWith(expectedDefaults.animationSpeed);
+		});
+
+		afterEach(function () {
+			jest.restoreAllMocks();
 		});
 	});
 });
