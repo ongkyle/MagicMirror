@@ -16,7 +16,9 @@ describe("Functions into recipe/node_heler.js", function () {
 		describe("when the 'ADD_RECIPE' notification is recieved", function () {
 			const payload = {
 				apiKey: "test",
-				queryParams: "test",
+				url: "test",
+				httpMethod: "POST",
+				data: "test",
 				updateInterval: "test",
 				id: "test"
 			};
@@ -26,16 +28,18 @@ describe("Functions into recipe/node_heler.js", function () {
 			});
 
 			it("calls createFetcher", function () {
-				expect(fake).toHaveBeenCalledWith(payload.apiKey, payload.queryParams, payload.updateInterval, payload.id);
+				expect(fake).toHaveBeenCalledWith(payload.apiKey, payload.url, payload.httpMethod, payload.data, payload.updateInterval, payload.id);
 			});
 		});
 	});
 
 	describe("createFetcher", function () {
 		const expectedApiKey = "test";
-		const expectedParams = { test: "test" };
+		const expectedUrl = "test";
+		const expectedData = "test";
 		const expectedUpdateInterval = 1234;
 		const expectedIdentifier = "test";
+		const expectedHttpMethod = "POST";
 
 		beforeEach(function () {
 			mockInitializer = jest.fn();
@@ -47,11 +51,11 @@ describe("Functions into recipe/node_heler.js", function () {
 			recipeNodeHelper.configureOnErrorCallback = mockOnError;
 			recipeNodeHelper.startFetch = mockStart;
 
-			recipeNodeHelper.createFetcher(expectedApiKey, expectedParams, expectedUpdateInterval, expectedIdentifier);
+			recipeNodeHelper.createFetcher(expectedApiKey, expectedUrl, expectedHttpMethod, expectedData, expectedUpdateInterval, expectedIdentifier);
 		});
 
 		it("creates a new fetcher", function () {
-			expect(mockInitializer).toHaveBeenCalledWith(expectedApiKey, expectedParams, expectedUpdateInterval);
+			expect(mockInitializer).toHaveBeenCalledWith(expectedApiKey, expectedUrl, expectedHttpMethod, expectedData, expectedUpdateInterval);
 		});
 
 		it("sets the on success callback", function () {
@@ -106,7 +110,7 @@ describe("Functions into recipe/node_heler.js", function () {
 		it("calls fetcher.onRecieve", function () {
 			expect(mockOnReceive).toHaveBeenCalledTimes(1);
 			expect(mockOnReceive.mock.calls[0][0]).toEqual(expect.any(Function));
-			expect(mockOnReceive.mock.calls[0][0].toString().replace(/\s+/g, "")).toEqual(`fetcher=>{this.broadcastEvents(fetcher,identifier);}`);
+			expect(mockOnReceive.mock.calls[0][0].toString().replace(/\s+/g, "")).toEqual(`events=>{this.broadcastEvents(events,identifier);}`);
 		});
 	});
 

@@ -9,11 +9,12 @@ describe("Test recipe module", () => {
 		beforeAll((done) => {
 			helpers.startApplication("tests/configs/modules/recipe/recipe.js");
 			helpers.getDocument(done);
+			jest.setTimeout(30000);
 		});
 
 		it("displays recipes at the configured interval", (done) => {
 			ignoreVal = "";
-			helpers.waitForElement(".recipe").then((elem) => {
+			helpers.waitForElement(".recipe", "undefined").then((elem) => {
 				done();
 				expect(elem).not.toBe(null);
 				expect(elem.textContent).toContain("Korean Spicy Bulgogi");

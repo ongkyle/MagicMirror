@@ -47,14 +47,15 @@ Module.register("recipe", {
 	},
 
 	addRecipe: function () {
-		defaults = this.getDefaults();
+		config = this.getConfig();
 		openAIConfig = this.getOpenAI();
 		this.sendSocketNotification("ADD_RECIPE", {
-			id: this.identifier,
 			apiKey: openAIConfig.apiKey,
 			url: openAIConfig.url,
+			httpMethod: openAIConfig.httpMethod,
 			data: openAIConfig.data,
-			updateInterval: defaults.updateInterval
+			updateInterval: config.updateInterval,
+			id: this.identifier
 		});
 	},
 
@@ -70,16 +71,15 @@ Module.register("recipe", {
 		return this.defaults;
 	},
 
-	getConfigOrDefaults: function () {
-		defaults = this.getDefaults();
+	getConfig: function () {
 		return {
-			...defaults,
+			...this.getDefaults(),
 			...this.config
 		};
 	},
 
 	getOpenAI: function () {
-		return this.getDefaults().openAI;
+		return this.getConfig().openAI;
 	},
 
 	getDom: function () {
@@ -87,10 +87,11 @@ Module.register("recipe", {
 	},
 
 	createRecipeSpan: function () {
-		const parts = this.getRecipeData().split("\n");
-		const recipe = document.createElement("span");
+		let recipeData = this.getRecipeData();
+		let parts = recipeData.split("\n");
+		let recipe = document.createElement("span");
 
-		for (const part of parts) {
+		for (let part of parts) {
 			recipe.appendChild(document.createTextNode(part));
 			recipe.appendChild(document.createElement("br"));
 		}
@@ -100,7 +101,7 @@ Module.register("recipe", {
 	},
 
 	createRecipeWrapper: function () {
-		const wrapper = document.createElement("div");
+		let wrapper = document.createElement("div");
 		wrapper.className = this.defaults.wrapperName;
 
 		recipe = this.createRecipeSpan();

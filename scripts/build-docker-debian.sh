@@ -1,6 +1,6 @@
 #!/bin/sh
 
-: ${NODE_VERSION:="16.19.0"}
+: ${NODE_VERSION:="18.13.0"}
 : ${DEBIAN_VERSION:="buster"}
 : ${BUILDER_IMG:="registry.gitlab.com/ongkyle/magicmirror:buildkit-artifacts-dev"}
 : ${IMG_TAG:="registry.gitlab.com/ongkyle/magicmirror:debian-buster-dev"}

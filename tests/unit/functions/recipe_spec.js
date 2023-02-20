@@ -158,11 +158,11 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 		});
 	});
 
-	describe("getConfigOrDefaults", function () {
+	describe("getConfig", function () {
 		describe("when the config overwrites all defaults", function () {
 			beforeEach(function () {
 				Module.definitions.recipe.config = expectedConfig;
-				observed = Module.definitions.recipe.getConfigOrDefaults();
+				observed = Module.definitions.recipe.getConfig();
 			});
 			it("returns the config", function () {
 				expect(observed).toEqual(expectedConfig);
@@ -173,7 +173,7 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 		});
 		describe("when there is no config", function () {
 			beforeEach(function () {
-				observed = Module.definitions.recipe.getConfigOrDefaults();
+				observed = Module.definitions.recipe.getConfig();
 			});
 			it("returns the defaults", function () {
 				expect(observed).toEqual(expectedDefaults);
@@ -195,7 +195,7 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 					updateInterval: 3 * ONE_MINUTE,
 					animationSpeed: 1000
 				};
-				observed = Module.definitions.recipe.getConfigOrDefaults();
+				observed = Module.definitions.recipe.getConfig();
 			});
 			it("returns a combination of the config and defaults", function () {
 				expect(observed).toEqual({

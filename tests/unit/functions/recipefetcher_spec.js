@@ -3,6 +3,7 @@ const Fetcher = require("../../../modules/default/recipe/recipefetcher.js");
 describe("Functions into recipe/recipefetcher .js", function () {
 	const expectedApiKey = "asdfasdf";
 	const expectedUrl = "https://api.openai.com/v1/completions?model=text-davinci-003";
+	const expectedHttpMethod = "POST";
 	const expectedData = {
 		model: "text-davinci-003",
 		prompt: "reccommend an asian food recipe",
@@ -13,9 +14,11 @@ describe("Functions into recipe/recipefetcher .js", function () {
 		presence_penalty: 0
 	};
 	const raw = JSON.stringify(expectedData);
-	const expectedHeaders = new Headers();
-	expectedHeaders.append("Authorization", "Bearer " + expectedApiKey);
-	expectedHeaders.append("Content-Type", "application/json");
+	const expectedHeaders = {
+		Authorization: "Bearer " + expectedApiKey,
+		"Content-Type": "application/json",
+		Accept: "application/json"
+	};
 
 	const expectedRequestOptions = {
 		method: "POST",
@@ -51,7 +54,7 @@ describe("Functions into recipe/recipefetcher .js", function () {
 	const expectedReloadTimer = null;
 
 	beforeEach(function () {
-		recipeFetcher = new Fetcher(expectedApiKey, expectedUrl, expectedData, expectedUpdateInterval);
+		recipeFetcher = new Fetcher(expectedApiKey, expectedUrl, expectedHttpMethod, expectedData, expectedUpdateInterval);
 	});
 	afterAll(function () {
 		jest.restoreAllMocks();
@@ -85,11 +88,15 @@ describe("Functions into recipe/recipefetcher .js", function () {
 
 	describe("awaitFetch", function () {
 		beforeEach(async () => {
-			global.fetch = jest.fn(() => Promise.resolve(expectedResult));
+			global.fetch = jest.fn(() =>
+				Promise.resolve({
+					json: () => Promise.resolve(expectedResult)
+				})
+			);
 			observed = await recipeFetcher.awaitFetch(expectedRequestOptions);
 		});
 		it("returns result.data", () => {
-			expect(observed).toEqual(expectedResult.data);
+			expect(observed).toEqual(expectedResult);
 		});
 		it("calls fetch with the expected params", () => {
 			expect(global.fetch).toHaveBeenCalledTimes(1);

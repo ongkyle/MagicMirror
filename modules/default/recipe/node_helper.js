@@ -10,15 +10,15 @@ module.exports = NodeHelper.create({
 
 	socketNotificationReceived: function (notification, payload) {
 		if (notification === "ADD_RECIPE") {
-			this.createFetcher(payload.apiKey, payload.queryParams, payload.updateInterval, payload.id);
+			this.createFetcher(payload.apiKey, payload.url, payload.httpMethod, payload.data, payload.updateInterval, payload.id);
 		}
 	},
 
-	createFetcher: function (apiKey, params, updateInterval, identifier) {
+	createFetcher: function (apiKey, url, httpMethod, data, updateInterval, identifier) {
 		let fetcher;
 
 		Log.log("Create new recipeFetcher.");
-		fetcher = this.initializeFetcher(apiKey, params, updateInterval);
+		fetcher = this.initializeFetcher(apiKey, url, httpMethod, data, updateInterval);
 
 		this.configureOnReceiveCallback(fetcher, identifier);
 		this.configureOnErrorCallback(fetcher);
@@ -32,13 +32,13 @@ module.exports = NodeHelper.create({
 		});
 	},
 
-	initializeFetcher: function (apiKey, params, updateInterval) {
-		return new RecipeFetcher(apiKey, params, updateInterval);
+	initializeFetcher: function (apiKey, url, httpMethod, data, updateInterval) {
+		return new RecipeFetcher(apiKey, url, httpMethod, data, updateInterval);
 	},
 
 	configureOnReceiveCallback(fetcher, identifier) {
-		fetcher.onReceive((fetcher) => {
-			this.broadcastEvents(fetcher, identifier);
+		fetcher.onReceive((events) => {
+			this.broadcastEvents(events, identifier);
 		});
 	},
 
@@ -49,6 +49,6 @@ module.exports = NodeHelper.create({
 	},
 
 	startFetch(fetcher) {
-		fetcher.startFetch();
+		fetcher.fetchRecipe();
 	}
 });

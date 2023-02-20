@@ -107,7 +107,23 @@ let config = {
 		},
 		{
 			module: "recipe",
-			position: "upper_third"
+			position: "upper_third",
+			config: {
+				openAI: {
+					data: {
+						model: "text-davinci-003",
+						prompt: "reccommend an asian food recipe",
+						temperature: 0,
+						max_tokens: 100,
+						top_p: 1,
+						frequency_penalty: 0.2,
+						presence_penalty: 0
+					},
+					url: "https://api.openai.com/v1/completions?model=text-davinci-003",
+					apiKey: "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",
+					httpMethod: "POST"
+				}
+			}
 		}
 	]
 };

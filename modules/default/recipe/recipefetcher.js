@@ -1,7 +1,7 @@
 const Log = require("logger");
 const NodeHelper = require("node_helper");
 
-const RecipeFetcher = function (apiKey, url, data, updateInterval) {
+const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 	this.reloadTimer = null;
 	this.events = "";
 
@@ -12,6 +12,7 @@ const RecipeFetcher = function (apiKey, url, data, updateInterval) {
 	this.data = data;
 	this.url = url;
 	this.updateInterval = updateInterval;
+	this.httpMethod = httpMethod;
 
 	this.fetchRecipe = function () {
 		this.clearTimeout(this.reloadTimer);
@@ -21,6 +22,7 @@ const RecipeFetcher = function (apiKey, url, data, updateInterval) {
 			.then((responseData) => {
 				try {
 					this.parse(responseData);
+					this.broadcastEvents();
 				} catch (error) {
 					this.fetchFailedCallback(this, error);
 					this.scheduleTimer();
@@ -31,23 +33,31 @@ const RecipeFetcher = function (apiKey, url, data, updateInterval) {
 				if (error.response) {
 					Log.error(error.response.status, error.response.data);
 				} else {
-					Log.error(`Error with OpenAI API request: ${error.message}`);
+					Log.error(`Recipe-Fetcher: Error with OpenAI API request: ${error.message}`);
+					Log.error(
+						`Recipe-Fetcher: Error with OpenAI API request: ${JSON.stringify({
+							apiKey: this.apiKey,
+							data: this.data,
+							url: this.url,
+							updateInterval: this.updateInterval
+						})}`
+					);
 				}
 				this.fetchFailedCallback(this, error);
 				this.scheduleTimer();
 			});
-
-		this.broadcastEvents();
 		this.scheduleTimer();
 	};
 
 	this.buildRequest = function () {
-		const headers = new Headers();
-		headers.append("Authorization", "Bearer " + this.apiKey);
-		headers.append("Content-Type", "application/json");
-		const raw = JSON.stringify(this.data);
+		headers = {
+			Authorization: "Bearer " + this.apiKey,
+			"Content-Type": "application/json",
+			Accept: "application/json"
+		};
+		let raw = JSON.stringify(this.data);
 		return {
-			method: "POST",
+			method: this.httpMethod,
 			headers: headers,
 			body: raw,
 			redirect: "follow"
@@ -55,21 +65,27 @@ const RecipeFetcher = function (apiKey, url, data, updateInterval) {
 	};
 
 	this.parse = function (data) {
+		Log.log("Recipe-Fetcher: got data=" + JSON.stringify(data));
 		this.events = data.choices[0].text;
-		Log.log("Recipe-Fetcher: parsed data=" + events);
-		Log.log("Recipe-Fetcher: got responseData=" + JSON.stringify(responseData));
+		Log.log("Recipe-Fetcher: parsed data=" + this.events);
 	};
 
 	this.awaitFetch = async function (request) {
-		const result = await global.fetch(this.url, request);
-		const response = await result.data;
-		return new Promise((resolve) => {
-			resolve(response);
-		});
+		Log.log(
+			"Recipe-Fetcher: fetching=" +
+				JSON.stringify({
+					request: request,
+					url: url
+				})
+		);
+		let response = await global.fetch(this.url, request);
+		let result = await response.json();
+		Log.log("Recipe-Fetcher: got json=" + result);
+		return result;
 	};
 
 	this.setTimeout = function (time) {
-		fetcher = new RecipeFetcher(this.apiKey, this.url, this.data, this.updateInterval);
+		fetcher = new RecipeFetcher(this.apiKey, this.url, this.httpMethod, this.data, this.updateInterval);
 		this.reloadTimer = setTimeout(function () {
 			fetcher.fetchRecipe();
 		}, time);
@@ -81,12 +97,13 @@ const RecipeFetcher = function (apiKey, url, data, updateInterval) {
 
 	this.scheduleTimer = function () {
 		this.clearTimeout(this.reloadTimer);
-		this.setTimeout(updateInterval);
+		this.setTimeout(this.updateInterval);
 	};
 
 	this.broadcastEvents = function () {
-		Log.info("Recipe-Fetcher: Broadcasting " + this.events);
-		this.eventsReceivedCallback(this);
+		events = this.getEvents();
+		Log.info("Recipe-Fetcher: Broadcasting " + events);
+		this.eventsReceivedCallback(events);
 	};
 
 	this.onReceive = function (callback) {
