@@ -55,7 +55,8 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 			"Content-Type": "application/json",
 			Accept: "application/json"
 		};
-		let raw = JSON.stringify(this.data);
+		data = this.buildData()
+		let raw = JSON.stringify(data);
 		return {
 			method: this.httpMethod,
 			headers: headers,
@@ -63,6 +64,25 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 			redirect: "follow"
 		};
 	};
+
+	this.buildData = function () {
+		prompt = this.buildPrompt()
+		return {
+			model: this.data.model,
+			prompt: prompt,
+			temperature: this.data.temperature,
+			max_tokens: this.data.max_tokens,
+			top_p: this.data.top_p,
+			frequency_penalty: this.data.frequency_penalty,
+			presence_penalty: this.data.presence_penalty
+		}
+	};
+
+	this.buildPrompt = function () {
+		return `reccommend an ${this.data.cuisine} food recipe`
+	};
+
+
 
 	this.parse = function (data) {
 		Log.log("Recipe-Fetcher: got data=" + JSON.stringify(data));

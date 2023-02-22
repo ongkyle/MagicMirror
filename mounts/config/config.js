@@ -112,15 +112,15 @@ let config = {
 				openAI: {
 					data: {
 						model: "text-davinci-003",
-						prompt: "reccommend an asian food recipe",
-						temperature: 0,
-						max_tokens: 100,
+						cuisine: "asian",
+						temperature: 1,
+						max_tokens: 300,
 						top_p: 1,
-						frequency_penalty: 0.2,
+						frequency_penalty: 0,
 						presence_penalty: 0
 					},
 					url: "https://api.openai.com/v1/completions?model=text-davinci-003",
-					apiKey: "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",
+					apiKey: "",
 					httpMethod: "POST"
 				}
 			}
