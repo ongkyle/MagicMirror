@@ -9,10 +9,11 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 	};
 
 	const ONE_MINUTE = 60 * 1000;
+	const expectedClassName = "thin xsmall bright pre-line";
 
 	const expectedDefaults = {
 		text: "Recipe!",
-		wrapperName: "thin xlarge bright pre-line",
+		wrapperName: expectedClassName,
 		openAI: {
 			data: {
 				model: "text-davinci-003",
@@ -32,7 +33,7 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 
 	const expectedConfig = {
 		text: "Recipe!",
-		wrapperName: "thin xlarge bright pre-line",
+		wrapperName: expectedClassName,
 		openAI: {
 			data: {
 				model: "text-davinci-003",
@@ -62,7 +63,6 @@ describe("Functions into modules/default/recipe/recipe.js", function () {
 	});
 
 	describe("getDom", function () {
-		const expectedClassName = "thin xlarge bright pre-line";
 		var returnVal;
 
 		beforeEach(function () {

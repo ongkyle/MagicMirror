@@ -4,7 +4,8 @@ Module.register("recipe", {
 	// Default module config.
 	defaults: {
 		text: "Recipe!",
-		wrapperName: "thin xlarge bright pre-line",
+		wrapperName: "thin xsmall bright pre-line",
+		// turn this into a schema shared by the recipe.js and recipefetcher.js
 		openAI: {
 			data: {
 				model: "text-davinci-003",

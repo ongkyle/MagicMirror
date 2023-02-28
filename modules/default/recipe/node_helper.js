@@ -10,7 +10,8 @@ module.exports = NodeHelper.create({
 
 	socketNotificationReceived: function (notification, payload) {
 		if (notification === "ADD_RECIPE") {
-			this.createFetcher(payload.apiKey, payload.url, payload.httpMethod, payload.data, payload.updateInterval, payload.id);
+			this.createFetcher(payload.apiKey, payload.url, payload.httpMethod,
+				payload.data, payload.updateInterval, payload.id);
 		}
 	},
 

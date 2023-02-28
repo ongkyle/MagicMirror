@@ -55,14 +55,17 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 			"Content-Type": "application/json",
 			Accept: "application/json"
 		};
-		data = this.buildData()
-		let raw = JSON.stringify(data);
-		return {
+		req = {
 			method: this.httpMethod,
 			headers: headers,
-			body: raw,
 			redirect: "follow"
 		};
+		if (this.httpMethod == "POST") {
+			data = this.buildData()
+			let raw = JSON.stringify(data);
+			req.body = raw
+		}
+		return req
 	};
 
 	this.buildData = function () {
