@@ -61,11 +61,23 @@ Module.register("recipe", {
 	},
 
 	getTemplate: function () {
-		return "helloworld.njk";
+		return "recipe.njk";
+	},
+
+	getStyles: function () {
+		return [
+			"recipe_styles.css"
+		]
 	},
 
 	getTemplateData: function () {
-		return this.config;
+		data = this.getRecipeData();
+		return {
+			title: "Miso Salmon Bowl",
+			events: data,
+			ingredients: "Ingredients: \n\n- 2 salmon fillets (6-8 ounces each)\n- 1-2 tablespoons white miso paste\n- 2 teaspoons rice vinegar\n- 2 teaspoons honey\n- 1 teaspoon sesame oil\n- 2 cloves garlic, minced\n- 2 cloves ginger, minced\n- 2 tablespoons finely chopped scallions\n- 1 cup cooked white or brown rice\n",
+			instructions: "Instructions:\n\n1. Preheat oven to 375°F. Line a baking sheet with foil and spray with non-stick cooking spray.\n\n2. Place salmon fillets onto prepared baking sheet and spread the miso paste evenly over each fillet.\n\n3. In a small bowl, combine the vinegar, honey, and sesame oil, and whisk until combined.\n\n4. Drizzle the mixture over the miso-coated salmon fillets, then sprinkle with garllic, ginger, and scallions.\n\n5. Bake the salmon for 15-20 minutes, or until it flakes easily with a fork.\n\n6. Serve each salmon fillet over ½ cup cooked white or brown rice. Add a drizzle of additional sesame oil if desired. Enjoy!",
+		}
 	},
 
 	getDefaults: function () {
@@ -81,10 +93,6 @@ Module.register("recipe", {
 
 	getOpenAI: function () {
 		return this.getConfig().openAI;
-	},
-
-	getDom: function () {
-		return this.createRecipeWrapper();
 	},
 
 	createRecipeSpan: function () {

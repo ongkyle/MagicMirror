@@ -107,21 +107,22 @@ let config = {
 		},
 		{
 			module: "recipe",
-			position: "upper_third",
+			position: "center",
 			config: {
 				openAI: {
-					data: {
-						model: "text-davinci-003",
-						cuisine: "asian",
-						temperature: 1,
-						max_tokens: 300,
-						top_p: 1,
-						frequency_penalty: 0,
-						presence_penalty: 0
-					},
-					url: "https://api.openai.com/v1/completions?model=text-davinci-003",
-					apiKey: "",
-					httpMethod: "POST"
+					// data: {
+					// 	model: "text-davinci-003",
+					// 	cuisine: "asian",
+					// 	temperature: 1,
+					// 	max_tokens: 300,
+					// 	top_p: 1,
+					// 	frequency_penalty: 0,
+					// 	presence_penalty: 0
+					// },
+					// move url to recipefetcher.js (implementation detail)
+					url: "http://localhost:8080/tests/configs/data/recipeTest.json",
+					apiKey: "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",
+					httpMethod: "GET"
 				}
 			}
 		}
