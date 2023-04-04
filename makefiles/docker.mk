@@ -27,7 +27,8 @@ docker-down: ## Stop the mm container
 .PHONY: redeploy
 redeploy: docker-build docker-up ## Rebuild and restart containers
 
+danglingImages := $(shell docker images -f dangling=true -q)
 .PHONY: docker-prune
 docker-prune: ## Prune unused images
-	docker image prune -f
-
+	@docker rmi $(danglingImages)
+	@docker image prune -f

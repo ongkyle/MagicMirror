@@ -1,5 +1,7 @@
 ARG NODE_VERSION
-FROM node:${NODE_VERSION}-alpine as builder
+ARG PYTHON_VERSION
+
+FROM nikolaik/python-nodejs:python${PYTHON_VERSION}-nodejs${NODE_VERSION}-slim as builder 
 
 WORKDIR /opt/magic_mirror
 
@@ -7,9 +9,29 @@ COPY scripts/build_info.sh /tmp
 
 ADD . ./
 
+ENV PYTHONUNBUFFERED=1
+ENV ENV PIP_NO_CACHE_DIR=False
+
 RUN set -e; \
-    apk add --no-cache git; \
-    chmod +x /tmp/build_info.sh;
+    if [ -z "${debug}" ]; then \
+      npmargs="--omit=dev"; \
+      if [ -z "${buildarch}" ]; then \
+        npmargs="${npmargs} --omit=optional"; \
+      elif [ "${buildarch}" = "arm32v7/" ]; then \
+        npmargs="${npmargs} --arch=armv7l"; \
+      elif [ "${buildarch}" = "arm64v8/" ]; then \
+        npmargs="${npmargs} --arch=arm64"; \
+      fi; \
+    fi; \
+    echo "now installing dalai"; \
+    python3 -m venv ~/venv; \
+    . ~/venv/bin/activate; \
+    pip3 install -r requirements.txt; \
+    echo "now executing npm install dalai --ignore-scripts ${npmargs}"; \
+    npm install dalai --ignore-scripts ${npmargs} ;
+
+RUN set -e; \
+    chmod +x /tmp/build_info.sh
 
 ARG GIT_INFO
 ARG buildarch
