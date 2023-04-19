@@ -1,5 +1,6 @@
 const Log = require("logger");
 const NodeHelper = require("node_helper");
+const Llama = require("llama");
 
 const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 	this.reloadTimer = null;
@@ -61,15 +62,15 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 			redirect: "follow"
 		};
 		if (this.httpMethod == "POST") {
-			data = this.buildData()
+			data = this.buildData();
 			let raw = JSON.stringify(data);
-			req.body = raw
+			req.body = raw;
 		}
-		return req
+		return req;
 	};
 
 	this.buildData = function () {
-		prompt = this.buildPrompt()
+		prompt = this.buildPrompt();
 		return {
 			model: this.data.model,
 			prompt: prompt,
@@ -78,14 +79,12 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 			top_p: this.data.top_p,
 			frequency_penalty: this.data.frequency_penalty,
 			presence_penalty: this.data.presence_penalty
-		}
+		};
 	};
 
 	this.buildPrompt = function () {
-		return `reccommend an ${this.data.cuisine} food recipe`
+		return `reccommend an ${this.data.cuisine} food recipe`;
 	};
-
-
 
 	this.parse = function (data) {
 		Log.log("Recipe-Fetcher: got data=" + JSON.stringify(data));
@@ -94,6 +93,10 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 	};
 
 	this.awaitFetch = async function (request) {
+		request = {
+			model: "7B",
+			prompt: "The following is a conversation between a boy and a girl:"
+		};
 		Log.log(
 			"Recipe-Fetcher: fetching=" +
 				JSON.stringify({
@@ -101,7 +104,8 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 					url: url
 				})
 		);
-		let response = await global.fetch(this.url, request);
+		let response = await Llama.request(request);
+		Log.log("Recipe-Fetcher: got response=" + response);
 		let result = await response.json();
 		Log.log("Recipe-Fetcher: got json=" + result);
 		return result;

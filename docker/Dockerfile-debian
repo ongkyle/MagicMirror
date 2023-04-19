@@ -1,10 +1,5 @@
-ARG buildarch
 ARG BUILDER_IMG
-ARG NODE_VERSION
-ARG DEBIAN_VERSION
-ARG SLIM
 FROM ${BUILDER_IMG} as builder
-FROM ${buildarch}node:${NODE_VERSION}-${DEBIAN_VERSION}
 LABEL maintainer="Kyle Ong"
 
 USER root
@@ -26,19 +21,6 @@ ARG DEBIAN_VERSION
 RUN set -e; \
     apt-get update; \
     DEBIAN_FRONTEND=noninteractive apt-get -qy --no-install-recommends install git nano sudo gettext-base openssl ca-certificates wget tini gnupg; \
-    if [ ! -z "${buildarch}" ] || [ "${NODE_ENV}" = "test" ]; then \
-      _pck="${_pck} libgtk-3-0 libx11-xcb-dev libnss3-dev libxss1 libxtst6 libasound2 libdrm2 libgbm1 libxshmfence1 fonts-arphic-uming procps arp-scan"; \
-      if [ "${buildarch}" = "arm64v8/" ]; then \
-        # install pi stuff
-        _pck="${_pck} libraspberrypi-bin"; \
-        wget https://archive.raspbian.org/raspbian.public.key -O - | apt-key add -; \
-        echo 'deb http://raspbian.raspberrypi.org/raspbian/ '${DEBIAN_VERSION}' main contrib non-free rpi' | tee -a /etc/apt/sources.list; \
-        wget -O - http://archive.raspberrypi.org/debian/raspberrypi.gpg.key | sudo apt-key add -; \
-        echo 'deb http://archive.raspberrypi.org/debian/ '${DEBIAN_VERSION}' main ui' | tee -a /etc/apt/sources.list.d/raspi.list; \
-        apt-get update; \
-      fi; \
-    fi; \
-    [ "${NODE_ENV}" = "test" ] && _pck="${_pck} xvfb"; \
     DEBIAN_FRONTEND=noninteractive apt-get -qy --no-install-recommends install ${_pck}; \
     DEBIAN_FRONTEND=noninteractive apt-get -qy remove gnupg; \
     apt-get clean; \

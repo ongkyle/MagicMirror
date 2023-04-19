@@ -2,7 +2,7 @@ const ONE_MINUTE = 60 * 1000;
 
 Module.register("recipe", {
 	// Default module config.
-	defaults: {
+	defaultConfig: {
 		text: "Recipe!",
 		wrapperName: "thin xsmall bright pre-line",
 		// turn this into a schema shared by the recipe.js and recipefetcher.js
@@ -69,7 +69,7 @@ Module.register("recipe", {
 	},
 
 	getDefaults: function () {
-		return this.defaults;
+		return this.defaultConfig;
 	},
 
 	getConfig: function () {
@@ -103,7 +103,7 @@ Module.register("recipe", {
 
 	createRecipeWrapper: function () {
 		let wrapper = document.createElement("div");
-		wrapper.className = this.defaults.wrapperName;
+		wrapper.className = this.getDefaults().wrapperName;
 
 		recipe = this.createRecipeSpan();
 		wrapper.appendChild(recipe);

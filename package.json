@@ -99,7 +99,8 @@
 		"node_helper": "js/node_helper.js",
 		"logger": "js/logger.js",
 		"fetch": "js/fetch.js",
-		"openai-api": "js/openai-api.js"
+		"openai-api": "js/openai-api.js",
+		"llama": "js/llama.js"
 	},
 	"engines": {
 		"node": ">=14"

@@ -6,7 +6,11 @@
 .FORCE:
 
 .PHONY: docker-build
-docker-build: docker-build-artifacts docker-build-debian docker-prune ## Build Dockerfile-artifacts and Dockerfile-debian
+docker-build: docker-build-artifacts docker-prune ## Build Dockerfile-artifacts and Dockerfile-debian
+
+.PHONY: docker-build-llama
+docker-build-llama: ## Build Dockerfile-llama
+	./scripts/build-docker-llama.sh
 
 .PHONY: docker-build-artifacts
 docker-build-artifacts: ## Build Dockerfile-artifacts
@@ -30,5 +34,5 @@ redeploy: docker-build docker-up ## Rebuild and restart containers
 danglingImages := $(shell docker images -f dangling=true -q)
 .PHONY: docker-prune
 docker-prune: ## Prune unused images
-	@docker rmi $(danglingImages)
+	@docker rmi $(danglingImages) -f
 	@docker image prune -f
