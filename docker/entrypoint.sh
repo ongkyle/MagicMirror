@@ -25,6 +25,11 @@ if [ "${MM_OVERRIDE_CSS}" = "true" ]; then
   sudo cp /opt/magic_mirror/mount_ori/css/* ${css_dir}/
 fi
 
+if [ "${MM_OVERRIDE_JS}" = "true" ]; then
+  echo "copy js files to host ..."
+  sudo cp /opt/magic_mirror/mount_ori/js/* ${js_dir}/
+fi
+
 # create css/custom.css file https://github.com/MichMich/MagicMirror/issues/1977
 [ ! -f "${css_dir}/custom.css" ] && sudo touch ${css_dir}/custom.css
 

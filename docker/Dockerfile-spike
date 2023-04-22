@@ -1,13 +1,7 @@
-ARG NODE_VERSION
-ARG DEBIAN_VERSION
-ARG GIT_INFO
-ARG NODE_ENV
-ARG DEBIAN_VERSION
+ARG BUILDER_IMG
 
-FROM node:${NODE_VERSION}-${DEBIAN_VERSION} as builder
+FROM ${BUILDER_IMG} as builder
 
-ENV PYTHONUNBUFFERED=1
-ENV ENV PIP_NO_CACHE_DIR=False
 
 WORKDIR /opt/magic_mirror
 
@@ -19,42 +13,25 @@ RUN set -e; \
     chmod +x ./build_info.sh; \
     chmod +x ./entrypoint.sh;
 
+# Install Magic Mirror and its dependencies
 RUN set -e; \
     node -v; \
     echo "now executing: npm install ${npmargs}"; \
     npm install ${npmargs}; \
+    npm install -g nodemon; \
     sed -i "s:address\: \"localhost\":address\: \"0.0.0.0\":" config/config.js.sample; \
     sed -i "s:ipWhitelist\: \[.*\],:ipWhitelist\: \[\],:" config/config.js.sample; \
     mkdir mount_ori; \
     mv modules mount_ori/; \
     mv config mount_ori/; \
     mv css mount_ori/; \
+    cp -r js mount_ori/; \
     # remove not needed node_modules stuff
     ./build_info.sh "Artifacts" "$GIT_INFO"; 
 
 RUN set -e; \
-    apt-get update ; \
-    apt-get install -y software-properties-common  ; \
-    apt-get -y update ; \
-    add-apt-repository ppa:deadsnakes/ppa ;\
-    apt-get update -y ;\
-    apt-get install -y python3.10 python3-pip python3-venv; \
-    rm -rf /var/lib/apt/lists/*
-
-RUN set -e; \
-    pip3 install --upgrade pip; \ 
-    echo "now installing dalai dependencies"; \
-    python3 -m venv ~/venv; \
-    . ~/venv/bin/activate; \
-    pip3 install -r requirements.txt; \
-    echo "now executing npm install dalai --ignore-scripts ${npmargs}"; \
-    npm install dalai@0.3.1 --ignore-scripts ${npmargs} ; \ 
-
-# procps, arp-scan and sudo needed for the module MMM-NetworkScanner
-# sudo needed for the module MMM-Remote-Control
-# sudo needed for cp in entrypoint
-
-RUN set -e; \
+    node -v ; \
+    useradd -ms /bin/bash node; \
     apt-get update; \
     DEBIAN_FRONTEND=noninteractive apt-get -qy --no-install-recommends install git nano sudo gettext-base openssl ca-certificates wget tini gnupg; \
     DEBIAN_FRONTEND=noninteractive apt-get -qy --no-install-recommends install ${_pck}; \
@@ -69,7 +46,7 @@ RUN set -e; \
     ./build_info.sh "Runtime" "$GIT_INFO"; \
     rm -f build_info.sh;
 
-USER node
+USER node    
 
 ENV ELECTRON_DISABLE_SANDBOX=1 \
     ELECTRON_DISABLE_GPU=1 \

@@ -1,0 +1,720 @@
+copy default modules to host ...
+alert
+calendar
+clock
+compliments
+defaultmodules.js
+helloworld
+newsfeed
+recipe
+updatenotification
+weather
+copy css files to host ...
+copy js files to host ...
+chown modules and config folder ...
+timezone is None
+start magicmirror
+[33m[nodemon] 2.0.22[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 20:01.05.089] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 20:01.05.090] [LOG]   Loading config ...
+[22.04.2023 20:01.05.092] [LOG]   Loading module helpers ...
+[22.04.2023 20:01.05.092] [LOG]   No helper found for module: alert.
+[22.04.2023 20:01.05.095] [LOG]   Initializing new module helper ...
+[22.04.2023 20:01.05.095] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 20:01.05.095] [LOG]   No helper found for module: clock.
+[22.04.2023 20:01.05.152] [LOG]   Initializing new module helper ...
+[22.04.2023 20:01.05.153] [LOG]   Module helper loaded: calendar
+[22.04.2023 20:01.05.153] [LOG]   No helper found for module: compliments.
+[22.04.2023 20:01.05.153] [LOG]   No helper found for module: weather.
+[22.04.2023 20:01.05.157] [LOG]   Initializing new module helper ...
+[22.04.2023 20:01.05.157] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 20:01.05.346] [LOG]   Initializing new module helper ...
+[22.04.2023 20:01.05.346] [LOG]   Module helper loaded: recipe
+[22.04.2023 20:01.05.346] [LOG]   All module helpers loaded.
+[22.04.2023 20:01.05.348] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 20:01.05.350] [LOG]   Server started ...
+[22.04.2023 20:01.05.350] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 20:01.05.350] [LOG]   Starting module helper: updatenotification
+[22.04.2023 20:01.05.350] [LOG]   Connecting socket for: calendar
+[22.04.2023 20:01.05.351] [LOG]   Starting node helper for: calendar
+[22.04.2023 20:01.05.351] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 20:01.05.351] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 20:01.05.351] [LOG]   Connecting socket for: recipe
+[22.04.2023 20:01.05.351] [LOG]   Starting node helper for: recipe
+[22.04.2023 20:01.05.351] [LOG]   Sockets connected & modules started ...
+[22.04.2023 20:01.05.351] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 21:40.29.950] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 21:40.29.950] [LOG]   Loading config ...
+[22.04.2023 21:40.29.951] [LOG]   Loading module helpers ...
+[22.04.2023 21:40.29.952] [LOG]   No helper found for module: alert.
+[22.04.2023 21:40.29.953] [LOG]   Initializing new module helper ...
+[22.04.2023 21:40.29.953] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 21:40.29.954] [LOG]   No helper found for module: clock.
+[22.04.2023 21:40.29.996] [LOG]   Initializing new module helper ...
+[22.04.2023 21:40.29.996] [LOG]   Module helper loaded: calendar
+[22.04.2023 21:40.29.996] [LOG]   No helper found for module: compliments.
+[22.04.2023 21:40.29.996] [LOG]   No helper found for module: weather.
+[22.04.2023 21:40.30.001] [LOG]   Initializing new module helper ...
+[22.04.2023 21:40.30.001] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 21:40.30.173] [LOG]   Initializing new module helper ...
+[22.04.2023 21:40.30.173] [LOG]   Module helper loaded: recipe
+[22.04.2023 21:40.30.173] [LOG]   All module helpers loaded.
+[22.04.2023 21:40.30.175] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 21:40.30.177] [LOG]   Server started ...
+[22.04.2023 21:40.30.177] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 21:40.30.177] [LOG]   Starting module helper: updatenotification
+[22.04.2023 21:40.30.177] [LOG]   Connecting socket for: calendar
+[22.04.2023 21:40.30.177] [LOG]   Starting node helper for: calendar
+[22.04.2023 21:40.30.177] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 21:40.30.177] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 21:40.30.177] [LOG]   Connecting socket for: recipe
+[22.04.2023 21:40.30.178] [LOG]   Starting node helper for: recipe
+[22.04.2023 21:40.30.178] [LOG]   Sockets connected & modules started ...
+[22.04.2023 21:40.30.178] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[22.04.2023 21:41.19.719] [LOG]   Create new calendarfetcher for url: http://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics - Interval: 300000
+[22.04.2023 21:41.19.731] [LOG]   Create new newsfetcher for url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml - Interval: 300000
+[22.04.2023 21:41.19.747] [LOG]   Create new recipeFetcher.
+[22.04.2023 21:41.19.747] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:"}}
+[22.04.2023 21:41.19.747] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 21:41.19.750] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:'
+}
+[22.04.2023 21:41.19.751] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 21:41.19.751] [INFO]  Checking git for module: default
+[22.04.2023 21:41.19.752] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+[22.04.2023 21:41.19.850] [INFO]  Newsfeed-Fetcher: Broadcasting 27 items.
+[22.04.2023 21:41.20.148] [INFO]  Calendar-Fetcher: Broadcasting 10 events.
+[22.04.2023 21:41.36.080] [LOG]   Recipe-Fetcher: got response=undefined
+[22.04.2023 21:43.36.083] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:"}}
+[22.04.2023 21:43.36.083] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 21:43.36.084] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:'
+}
+[22.04.2023 21:43.36.084] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 21:43.36.084] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+[22.04.2023 21:43.52.091] [LOG]   Recipe-Fetcher: got response=undefined
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 21:44.04.445] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 21:44.04.446] [LOG]   Loading config ...
+[22.04.2023 21:44.04.447] [LOG]   Loading module helpers ...
+[22.04.2023 21:44.04.447] [LOG]   No helper found for module: alert.
+[22.04.2023 21:44.04.449] [LOG]   Initializing new module helper ...
+[22.04.2023 21:44.04.449] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 21:44.04.449] [LOG]   No helper found for module: clock.
+[22.04.2023 21:44.04.487] [LOG]   Initializing new module helper ...
+[22.04.2023 21:44.04.487] [LOG]   Module helper loaded: calendar
+[22.04.2023 21:44.04.487] [LOG]   No helper found for module: compliments.
+[22.04.2023 21:44.04.487] [LOG]   No helper found for module: weather.
+[22.04.2023 21:44.04.491] [LOG]   Initializing new module helper ...
+[22.04.2023 21:44.04.491] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 21:44.04.655] [LOG]   Initializing new module helper ...
+[22.04.2023 21:44.04.656] [LOG]   Module helper loaded: recipe
+[22.04.2023 21:44.04.656] [LOG]   All module helpers loaded.
+[22.04.2023 21:44.04.658] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 21:44.04.659] [LOG]   Server started ...
+[22.04.2023 21:44.04.660] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 21:44.04.660] [LOG]   Starting module helper: updatenotification
+[22.04.2023 21:44.04.660] [LOG]   Connecting socket for: calendar
+[22.04.2023 21:44.04.660] [LOG]   Starting node helper for: calendar
+[22.04.2023 21:44.04.660] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 21:44.04.660] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 21:44.04.660] [LOG]   Connecting socket for: recipe
+[22.04.2023 21:44.04.660] [LOG]   Starting node helper for: recipe
+[22.04.2023 21:44.04.660] [LOG]   Sockets connected & modules started ...
+[22.04.2023 21:44.04.660] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 21:44.05.886] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 21:44.05.887] [LOG]   Loading config ...
+[22.04.2023 21:44.05.888] [LOG]   Loading module helpers ...
+[22.04.2023 21:44.05.888] [LOG]   No helper found for module: alert.
+[22.04.2023 21:44.05.890] [LOG]   Initializing new module helper ...
+[22.04.2023 21:44.05.890] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 21:44.05.890] [LOG]   No helper found for module: clock.
+[22.04.2023 21:44.05.925] [LOG]   Initializing new module helper ...
+[22.04.2023 21:44.05.925] [LOG]   Module helper loaded: calendar
+[22.04.2023 21:44.05.925] [LOG]   No helper found for module: compliments.
+[22.04.2023 21:44.05.926] [LOG]   No helper found for module: weather.
+[22.04.2023 21:44.05.929] [LOG]   Initializing new module helper ...
+[22.04.2023 21:44.05.929] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 21:44.06.094] [LOG]   Initializing new module helper ...
+[22.04.2023 21:44.06.094] [LOG]   Module helper loaded: recipe
+[22.04.2023 21:44.06.094] [LOG]   All module helpers loaded.
+[22.04.2023 21:44.06.096] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 21:44.06.098] [LOG]   Server started ...
+[22.04.2023 21:44.06.098] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 21:44.06.098] [LOG]   Starting module helper: updatenotification
+[22.04.2023 21:44.06.098] [LOG]   Connecting socket for: calendar
+[22.04.2023 21:44.06.099] [LOG]   Starting node helper for: calendar
+[22.04.2023 21:44.06.099] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 21:44.06.099] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 21:44.06.099] [LOG]   Connecting socket for: recipe
+[22.04.2023 21:44.06.099] [LOG]   Starting node helper for: recipe
+[22.04.2023 21:44.06.099] [LOG]   Sockets connected & modules started ...
+[22.04.2023 21:44.06.099] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 21:59.21.141] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 21:59.21.142] [LOG]   Loading config ...
+[22.04.2023 21:59.21.143] [LOG]   Loading module helpers ...
+[22.04.2023 21:59.21.143] [LOG]   No helper found for module: alert.
+[22.04.2023 21:59.21.145] [LOG]   Initializing new module helper ...
+[22.04.2023 21:59.21.145] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 21:59.21.145] [LOG]   No helper found for module: clock.
+[22.04.2023 21:59.21.180] [LOG]   Initializing new module helper ...
+[22.04.2023 21:59.21.180] [LOG]   Module helper loaded: calendar
+[22.04.2023 21:59.21.180] [LOG]   No helper found for module: compliments.
+[22.04.2023 21:59.21.180] [LOG]   No helper found for module: weather.
+[22.04.2023 21:59.21.184] [LOG]   Initializing new module helper ...
+[22.04.2023 21:59.21.184] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 21:59.21.347] [LOG]   Initializing new module helper ...
+[22.04.2023 21:59.21.347] [LOG]   Module helper loaded: recipe
+[22.04.2023 21:59.21.347] [LOG]   All module helpers loaded.
+[22.04.2023 21:59.21.349] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 21:59.21.351] [LOG]   Server started ...
+[22.04.2023 21:59.21.351] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 21:59.21.351] [LOG]   Starting module helper: updatenotification
+[22.04.2023 21:59.21.351] [LOG]   Connecting socket for: calendar
+[22.04.2023 21:59.21.351] [LOG]   Starting node helper for: calendar
+[22.04.2023 21:59.21.351] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 21:59.21.351] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 21:59.21.351] [LOG]   Connecting socket for: recipe
+[22.04.2023 21:59.21.352] [LOG]   Starting node helper for: recipe
+[22.04.2023 21:59.21.352] [LOG]   Sockets connected & modules started ...
+[22.04.2023 21:59.21.352] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 22:02.11.029] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 22:02.11.030] [LOG]   Loading config ...
+[22.04.2023 22:02.11.031] [LOG]   Loading module helpers ...
+[22.04.2023 22:02.11.031] [LOG]   No helper found for module: alert.
+[22.04.2023 22:02.11.033] [LOG]   Initializing new module helper ...
+[22.04.2023 22:02.11.033] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 22:02.11.033] [LOG]   No helper found for module: clock.
+[22.04.2023 22:02.11.070] [LOG]   Initializing new module helper ...
+[22.04.2023 22:02.11.070] [LOG]   Module helper loaded: calendar
+[22.04.2023 22:02.11.070] [LOG]   No helper found for module: compliments.
+[22.04.2023 22:02.11.071] [LOG]   No helper found for module: weather.
+[22.04.2023 22:02.11.074] [LOG]   Initializing new module helper ...
+[22.04.2023 22:02.11.074] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 22:02.11.237] [LOG]   Initializing new module helper ...
+[22.04.2023 22:02.11.237] [LOG]   Module helper loaded: recipe
+[22.04.2023 22:02.11.237] [LOG]   All module helpers loaded.
+[22.04.2023 22:02.11.239] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 22:02.11.241] [LOG]   Server started ...
+[22.04.2023 22:02.11.241] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 22:02.11.241] [LOG]   Starting module helper: updatenotification
+[22.04.2023 22:02.11.242] [LOG]   Connecting socket for: calendar
+[22.04.2023 22:02.11.242] [LOG]   Starting node helper for: calendar
+[22.04.2023 22:02.11.242] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 22:02.11.242] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 22:02.11.242] [LOG]   Connecting socket for: recipe
+[22.04.2023 22:02.11.242] [LOG]   Starting node helper for: recipe
+[22.04.2023 22:02.11.242] [LOG]   Sockets connected & modules started ...
+[22.04.2023 22:02.11.242] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[22.04.2023 22:02.25.387] [LOG]   Create new calendarfetcher for url: http://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics - Interval: 300000
+[22.04.2023 22:02.25.402] [LOG]   Create new newsfetcher for url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml - Interval: 300000
+[22.04.2023 22:02.25.429] [LOG]   Create new recipeFetcher.
+[22.04.2023 22:02.25.429] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:"}}
+[22.04.2023 22:02.25.429] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 22:02.25.432] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:'
+}
+[22.04.2023 22:02.25.432] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 22:02.25.433] [INFO]  Checking git for module: default
+[22.04.2023 22:02.25.435] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+[22.04.2023 22:02.25.530] [INFO]  Newsfeed-Fetcher: Broadcasting 27 items.
+[22.04.2023 22:02.25.828] [INFO]  Calendar-Fetcher: Broadcasting 10 events.
+[22.04.2023 22:02.43.684] [LOG]   Recipe-Fetcher: got response=undefined
+[22.04.2023 22:04.43.686] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:"}}
+[22.04.2023 22:04.43.686] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 22:04.43.687] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:'
+}
+[22.04.2023 22:04.43.687] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 22:04.43.688] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+[22.04.2023 22:04.54.519] [LOG]   Recipe-Fetcher: got response=undefined
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 22:05.26.337] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 22:05.26.338] [LOG]   Loading config ...
+[22.04.2023 22:05.26.339] [LOG]   Loading module helpers ...
+[22.04.2023 22:05.26.339] [LOG]   No helper found for module: alert.
+[22.04.2023 22:05.26.341] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.26.341] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 22:05.26.341] [LOG]   No helper found for module: clock.
+[22.04.2023 22:05.26.377] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.26.378] [LOG]   Module helper loaded: calendar
+[22.04.2023 22:05.26.378] [LOG]   No helper found for module: compliments.
+[22.04.2023 22:05.26.378] [LOG]   No helper found for module: weather.
+[22.04.2023 22:05.26.381] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.26.381] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 22:05.26.382] [LOG]   Loading module helpers ...
+[22.04.2023 22:05.26.382] [LOG]   No helper found for module: alert.
+[22.04.2023 22:05.26.382] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.26.382] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 22:05.26.382] [LOG]   No helper found for module: clock.
+[22.04.2023 22:05.26.382] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.26.382] [LOG]   Module helper loaded: calendar
+[22.04.2023 22:05.26.382] [LOG]   No helper found for module: compliments.
+[22.04.2023 22:05.26.383] [LOG]   No helper found for module: weather.
+[22.04.2023 22:05.26.383] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.26.383] [LOG]   Module helper loaded: newsfeed
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 22:05.30.073] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 22:05.30.074] [LOG]   Loading config ...
+[22.04.2023 22:05.30.074] [LOG]   Loading module helpers ...
+[22.04.2023 22:05.30.075] [LOG]   No helper found for module: alert.
+[22.04.2023 22:05.30.077] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.30.077] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 22:05.30.077] [LOG]   No helper found for module: clock.
+[22.04.2023 22:05.30.113] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.30.114] [LOG]   Module helper loaded: calendar
+[22.04.2023 22:05.30.114] [LOG]   No helper found for module: compliments.
+[22.04.2023 22:05.30.114] [LOG]   No helper found for module: weather.
+[22.04.2023 22:05.30.117] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.30.118] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 22:05.30.301] [LOG]   Initializing new module helper ...
+[22.04.2023 22:05.30.302] [LOG]   Module helper loaded: recipe
+[22.04.2023 22:05.30.302] [LOG]   All module helpers loaded.
+[22.04.2023 22:05.30.304] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 22:05.30.306] [LOG]   Server started ...
+[22.04.2023 22:05.30.306] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 22:05.30.306] [LOG]   Starting module helper: updatenotification
+[22.04.2023 22:05.30.306] [LOG]   Connecting socket for: calendar
+[22.04.2023 22:05.30.306] [LOG]   Starting node helper for: calendar
+[22.04.2023 22:05.30.307] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 22:05.30.307] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 22:05.30.307] [LOG]   Connecting socket for: recipe
+[22.04.2023 22:05.30.307] [LOG]   Starting node helper for: recipe
+[22.04.2023 22:05.30.307] [LOG]   Sockets connected & modules started ...
+[22.04.2023 22:05.30.307] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[22.04.2023 22:05.35.383] [LOG]   Create new calendarfetcher for url: http://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics - Interval: 300000
+[22.04.2023 22:05.35.406] [LOG]   Create new newsfetcher for url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml - Interval: 300000
+[22.04.2023 22:05.35.423] [LOG]   Create new recipeFetcher.
+[22.04.2023 22:05.35.424] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:","full":true}}
+[22.04.2023 22:05.35.424] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 22:05.35.427] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:',
+  full: true
+}
+[22.04.2023 22:05.35.427] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 22:05.35.427] [INFO]  Checking git for module: default
+[22.04.2023 22:05.35.428] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+/opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+exit
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+main: seed = 1682201135
+llama_model_load: loading model from 'models/7B/ggml-model-q4_0.bin' - please wait ...
+llama_model_load: ggml ctx size = 6065.34 MB
+llama_model_load: memory_size =  2048.00 MB, n_mem = 65536
+llama_model_load: loading model part 1/1 from 'models/7B/ggml-model-q4_0.bin'
+llama_model_load: .[22.04.2023 22:05.35.545] [INFO]  Newsfeed-Fetcher: Broadcasting 26 items.
+.......[22.04.2023 22:05.35.815] [INFO]  Calendar-Fetcher: Broadcasting 10 events.
+............................ done
+llama_model_load: model size =  4017.27 MB / num tensors = 291
+
+system_info: n_threads = 8 / 12 | AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | 
+
+main: prompt: 'The following is a conversation between a boy and a girl:'
+main: number of tokens in prompt = 13
+     1 -> ''
+  1576 -> 'The'
+  1494 -> ' following'
+   338 -> ' is'
+   263 -> ' a'
+ 14983 -> ' conversation'
+  1546 -> ' between'
+   263 -> ' a'
+  8023 -> ' boy'
+   322 -> ' and'
+   263 -> ' a'
+  7826 -> ' girl'
+ 29901 -> ':'
+
+sampling parameters: temp = 0.100000, top_k = 40, top_p = 0.950000, repeat_last_n = 64, repeat_penalty = 1.300000
+
+
+The following is a conversation between a boy and a girl:
+Boy: Hi, I'm John. It’s nice to meet you. What's your name?
+Girl: My name is Sarah. Nice to meet you too! How long have you been in Tokyo for?
+John: About two weeks now. This place has so much energy and it's really exciting me! I love the culture, food and people here. Have you ever visited other countries before? What was your favorite one?
+Sarah: Yes, I’ve had a chance to visit some places around Europe but my absolute favorit country is Japan. The culture, nature and cuisine are all so fascinating! Do you have any plans for the future here in Tokyo or elsewhere in Asia? [end of text]
+
+
+main: mem per token = 14434244 bytes
+main:     load time =  1208.71 ms
+main:   sample time =    65.80 ms
+main:  predict time = 25093.81 ms / 149.37 ms per token
+main:    total time = 26866.08 ms
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ exit
+exit
+[22.04.2023 22:06.02.429] [LOG]   Recipe-Fetcher: got response=undefined
+[22.04.2023 22:06.13.262] [LOG]   Use existing calendarfetcher for url: http://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics
+[22.04.2023 22:06.13.263] [INFO]  Calendar-Fetcher: Broadcasting 10 events.
+[22.04.2023 22:06.13.300] [LOG]   Use existing newsfetcher for url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+[22.04.2023 22:06.13.301] [INFO]  Newsfeed-Fetcher: Broadcasting 26 items.
+[22.04.2023 22:06.13.303] [LOG]   Create new recipeFetcher.
+[22.04.2023 22:06.13.303] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:","full":true}}
+[22.04.2023 22:06.13.303] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 22:06.13.304] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:',
+  full: true
+}
+[22.04.2023 22:06.13.304] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 22:06.13.306] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+/opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+exit
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+main: seed = 1682201173
+llama_model_load: loading model from 'models/7B/ggml-model-q4_0.bin' - please wait ...
+llama_model_load: ggml ctx size = 6065.34 MB
+llama_model_load: memory_size =  2048.00 MB, n_mem = 65536
+llama_model_load: loading model part 1/1 from 'models/7B/ggml-model-q4_0.bin'
+llama_model_load: .[22.04.2023 22:06.13.405] [INFO]  Newsfeed-Fetcher: Broadcasting 26 items.
+......[22.04.2023 22:06.13.653] [INFO]  Calendar-Fetcher: Broadcasting 10 events.
+............................. done
+llama_model_load: model size =  4017.27 MB / num tensors = 291
+
+system_info: n_threads = 8 / 12 | AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | 
+
+main: prompt: 'The following is a conversation between a boy and a girl:'
+main: number of tokens in prompt = 13
+     1 -> ''
+  1576 -> 'The'
+  1494 -> ' following'
+   338 -> ' is'
+   263 -> ' a'
+ 14983 -> ' conversation'
+  1546 -> ' between'
+   263 -> ' a'
+  8023 -> ' boy'
+   322 -> ' and'
+   263 -> ' a'
+  7826 -> ' girl'
+ 29901 -> ':'
+
+sampling parameters: temp = 0.100000, top_k = 40, top_p = 0.950000, repeat_last_n = 64, repeat_penalty = 1.300000
+
+
+The following is a conversation between a boy and a girl:
+Boy: Hi, I'm John. It’s nice to meet you. What's your name? 
+Girl: Sarah. Nice to meet you too! How long have you been in town? [end of text]
+
+
+main: mem per token = 14434244 bytes
+main:     load time =  1332.55 ms
+main:   sample time =    19.53 ms
+main:  predict time =  8428.19 ms / 142.85 ms per token
+main:    total time = 10271.82 ms
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ exit
+exit
+[22.04.2023 22:06.23.707] [LOG]   Recipe-Fetcher: got response=undefined
+[22.04.2023 22:08.02.430] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:","full":true}}
+[22.04.2023 22:08.02.430] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 22:08.02.431] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:',
+  full: true
+}
+[22.04.2023 22:08.02.431] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 22:08.02.432] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+/opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+exit
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+main: seed = 1682201282
+llama_model_load: loading model from 'models/7B/ggml-model-q4_0.bin' - please wait ...
+llama_model_load: ggml ctx size = 6065.34 MB
+llama_model_load: memory_size =  2048.00 MB, n_mem = 65536
+llama_model_load: loading model part 1/1 from 'models/7B/ggml-model-q4_0.bin'
+llama_model_load: .................................... done
+llama_model_load: model size =  4017.27 MB / num tensors = 291
+
+system_info: n_threads = 8 / 12 | AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | 
+
+main: prompt: 'The following is a conversation between a boy and a girl:'
+main: number of tokens in prompt = 13
+     1 -> ''
+  1576 -> 'The'
+  1494 -> ' following'
+   338 -> ' is'
+   263 -> ' a'
+ 14983 -> ' conversation'
+  1546 -> ' between'
+   263 -> ' a'
+  8023 -> ' boy'
+   322 -> ' and'
+   263 -> ' a'
+  7826 -> ' girl'
+ 29901 -> ':'
+
+sampling parameters: temp = 0.100000, top_k = 40, top_p = 0.950000, repeat_last_n = 64, repeat_penalty = 1.300000
+
+
+The following is a conversation between a boy and a girl:
+Boy: Hi, I'm John. It’s nice to meet you. What's your name?
+Girl: My name is Sarah. Nice to meet you too! How long have you been in Tokyo for?
+John: About two weeks now. Where are you from originally? 
+Sarah: From Osaka, but I moved here a few years ago. Have you visited any other places around Japan yet? [end of text]
+
+
+main: mem per token = 14434244 bytes
+main:     load time =  1174.09 ms
+main:   sample time =    39.98 ms
+main:  predict time = 15419.83 ms / 146.86 ms per token
+main:    total time = 17128.96 ms
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ exit
+exit
+[22.04.2023 22:08.19.695] [LOG]   Recipe-Fetcher: got response=undefined
+[22.04.2023 22:08.23.708] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:","full":true}}
+[22.04.2023 22:08.23.708] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 22:08.23.709] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:',
+  full: true
+}
+[22.04.2023 22:08.23.709] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 22:08.23.709] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+/opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+exit
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+main: seed = 1682201303
+llama_model_load: loading model from 'models/7B/ggml-model-q4_0.bin' - please wait ...
+llama_model_load: ggml ctx size = 6065.34 MB
+llama_model_load: memory_size =  2048.00 MB, n_mem = 65536
+llama_model_load: loading model part 1/1 from 'models/7B/ggml-model-q4_0.bin'
+llama_model_load: .................................... done
+llama_model_load: model size =  4017.27 MB / num tensors = 291
+
+system_info: n_threads = 8 / 12 | AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | 
+
+main: prompt: 'The following is a conversation between a boy and a girl:'
+main: number of tokens in prompt = 13
+     1 -> ''
+  1576 -> 'The'
+  1494 -> ' following'
+   338 -> ' is'
+   263 -> ' a'
+ 14983 -> ' conversation'
+  1546 -> ' between'
+   263 -> ' a'
+  8023 -> ' boy'
+   322 -> ' and'
+   263 -> ' a'
+  7826 -> ' girl'
+ 29901 -> ':'
+
+sampling parameters: temp = 0.100000, top_k = 40, top_p = 0.950000, repeat_last_n = 64, repeat_penalty = 1.300000
+
+
+The following is a conversation between a boy and a girl:
+Boy: Hi, I'm John. It’s nice to meet you. What’s your name? 
+Girl: My name is Sarah. Nice to meet you too! How long have you been in town? 
+John: About two months now. So what brings you here? 
+Sarah: Well, I'm visiting my grandparents for the summer and having a great time exploring the city! What about you? [end of text]
+
+
+main: mem per token = 14434244 bytes
+main:     load time =  1161.11 ms
+main:   sample time =    41.42 ms
+main:  predict time = 16278.90 ms / 146.66 ms per token
+main:    total time = 17977.30 ms
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ exit
+exit
+[22.04.2023 22:08.41.821] [LOG]   Recipe-Fetcher: got response=undefined
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 22:10.00.619] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 22:10.00.619] [LOG]   Loading config ...
+[22.04.2023 22:10.00.620] [LOG]   Loading module helpers ...
+[22.04.2023 22:10.00.621] [LOG]   No helper found for module: alert.
+[22.04.2023 22:10.00.622] [LOG]   Initializing new module helper ...
+[22.04.2023 22:10.00.622] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 22:10.00.622] [LOG]   No helper found for module: clock.
+[22.04.2023 22:10.00.657] [LOG]   Initializing new module helper ...
+[22.04.2023 22:10.00.657] [LOG]   Module helper loaded: calendar
+[22.04.2023 22:10.00.657] [LOG]   No helper found for module: compliments.
+[22.04.2023 22:10.00.657] [LOG]   No helper found for module: weather.
+[22.04.2023 22:10.00.661] [LOG]   Initializing new module helper ...
+[22.04.2023 22:10.00.661] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 22:10.00.832] [LOG]   Initializing new module helper ...
+[22.04.2023 22:10.00.833] [LOG]   Module helper loaded: recipe
+[22.04.2023 22:10.00.833] [LOG]   All module helpers loaded.
+[22.04.2023 22:10.00.835] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 22:10.00.836] [LOG]   Server started ...
+[22.04.2023 22:10.00.836] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 22:10.00.836] [LOG]   Starting module helper: updatenotification
+[22.04.2023 22:10.00.837] [LOG]   Connecting socket for: calendar
+[22.04.2023 22:10.00.837] [LOG]   Starting node helper for: calendar
+[22.04.2023 22:10.00.837] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 22:10.00.837] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 22:10.00.837] [LOG]   Connecting socket for: recipe
+[22.04.2023 22:10.00.837] [LOG]   Starting node helper for: recipe
+[22.04.2023 22:10.00.837] [LOG]   Sockets connected & modules started ...
+[22.04.2023 22:10.00.837] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[22.04.2023 22:10.09.182] [LOG]   Create new calendarfetcher for url: http://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics - Interval: 300000
+[22.04.2023 22:10.09.208] [LOG]   Create new newsfetcher for url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml - Interval: 300000
+[22.04.2023 22:10.09.235] [LOG]   Create new recipeFetcher.
+[22.04.2023 22:10.09.235] [LOG]   Recipe-Fetcher: fetching={"request":{"model":"alpaca.7B","prompt":"The following is a conversation between a boy and a girl:","full":"true"}}
+[22.04.2023 22:10.09.235] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 22:10.09.238] [LOG]   > query: {
+  model: 'alpaca.7B',
+  prompt: 'The following is a conversation between a boy and a girl:',
+  full: 'true'
+}
+[22.04.2023 22:10.09.238] [LOG]   { Core: 'alpaca', Model: '7B' }
+[22.04.2023 22:10.09.238] [INFO]  Checking git for module: default
+[22.04.2023 22:10.09.240] [LOG]   exec: /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:" in /opt/magic_mirror/dalai/alpaca
+/opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+exit
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ /opt/magic_mirror/dalai/alpaca/main --seed -1 --threads 8 --n_predict 128 --model models/7B/ggml-model-q4_0.bin -p "The following is a conversation between a boy and a girl:"
+main: seed = 1682201409
+llama_model_load: loading model from 'models/7B/ggml-model-q4_0.bin' - please wait ...
+llama_model_load: ggml ctx size = 6065.34 MB
+llama_model_load: memory_size =  2048.00 MB, n_mem = 65536
+llama_model_load: loading model part 1/1 from 'models/7B/ggml-model-q4_0.bin'
+llama_model_load: [22.04.2023 22:10.09.347] [INFO]  Newsfeed-Fetcher: Broadcasting 26 items.
+.................................... done
+llama_model_load: model size =  4017.27 MB / num tensors = 291
+
+system_info: n_threads = 8 / 12 | AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | 
+
+main: prompt: 'The following is a conversation between a boy and a girl:'
+main: number of tokens in prompt = 13
+     1 -> ''
+  1576 -> 'The'
+  1494 -> ' following'
+   338 -> ' is'
+   263 -> ' a'
+ 14983 -> ' conversation'
+  1546 -> ' between'
+   263 -> ' a'
+  8023 -> ' boy'
+   322 -> ' and'
+   263 -> ' a'
+  7826 -> ' girl'
+ 29901 -> ':'
+
+sampling parameters: temp = 0.100000, top_k = 40, top_p = 0.950000, repeat_last_n = 64, repeat_penalty = 1.300000
+
+
+[22.04.2023 22:10.10.656] [INFO]  Calendar-Fetcher: Broadcasting 10 events.
+The following is a conversation between a boy and a girl:
+Boy: Hi, I'm John. It’s nice to meet you. What's your name?
+Girl: My name is Sarah. Nice to meet you too! How long have you been in Japan for?
+John: About two months now. Where are you from originally?
+Sarah: From Tokyo, but I was born and raised in the United States. Have you traveled much outside of Japan yet? [end of text]
+
+
+main: mem per token = 14434244 bytes
+main:     load time =  1198.43 ms
+main:   sample time =    39.40 ms
+main:  predict time = 15564.84 ms / 146.84 ms per token
+main:    total time = 17297.96 ms
+]0;node@77bb9467f818: /opt/magic_mirror/dalai/alpaca[01;32mnode@77bb9467f818[00m:[01;34m/opt/magic_mirror/dalai/alpaca[00m$ exit
+exit
+[22.04.2023 22:10.26.669] [LOG]   Recipe-Fetcher: got response=undefined
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 22:11.35.350] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 22:11.35.351] [LOG]   Loading config ...
+[22.04.2023 22:11.35.351] [LOG]   Loading module helpers ...
+[22.04.2023 22:11.35.352] [LOG]   No helper found for module: alert.
+[22.04.2023 22:11.35.353] [LOG]   Initializing new module helper ...
+[22.04.2023 22:11.35.353] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 22:11.35.354] [LOG]   No helper found for module: clock.
+[22.04.2023 22:11.35.389] [LOG]   Initializing new module helper ...
+[22.04.2023 22:11.35.390] [LOG]   Module helper loaded: calendar
+[22.04.2023 22:11.35.390] [LOG]   No helper found for module: compliments.
+[22.04.2023 22:11.35.390] [LOG]   No helper found for module: weather.
+[22.04.2023 22:11.35.393] [LOG]   Initializing new module helper ...
+[22.04.2023 22:11.35.393] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 22:11.35.561] [LOG]   Initializing new module helper ...
+[22.04.2023 22:11.35.561] [LOG]   Module helper loaded: recipe
+[22.04.2023 22:11.35.561] [LOG]   All module helpers loaded.
+[22.04.2023 22:11.35.563] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 22:11.35.565] [LOG]   Server started ...
+[22.04.2023 22:11.35.565] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 22:11.35.565] [LOG]   Starting module helper: updatenotification
+[22.04.2023 22:11.35.565] [LOG]   Connecting socket for: calendar
+[22.04.2023 22:11.35.565] [LOG]   Starting node helper for: calendar
+[22.04.2023 22:11.35.565] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 22:11.35.566] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 22:11.35.566] [LOG]   Connecting socket for: recipe
+[22.04.2023 22:11.35.566] [LOG]   Starting node helper for: recipe
+[22.04.2023 22:11.35.566] [LOG]   Sockets connected & modules started ...
+[22.04.2023 22:11.35.566] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node serveronly/index.js`[39m
+[22.04.2023 22:11.44.199] [LOG]   Starting MagicMirror: v2.21.0
+[22.04.2023 22:11.44.200] [LOG]   Loading config ...
+[22.04.2023 22:11.44.201] [LOG]   Loading module helpers ...
+[22.04.2023 22:11.44.201] [LOG]   No helper found for module: alert.
+[22.04.2023 22:11.44.203] [LOG]   Initializing new module helper ...
+[22.04.2023 22:11.44.203] [LOG]   Module helper loaded: updatenotification
+[22.04.2023 22:11.44.203] [LOG]   No helper found for module: clock.
+[22.04.2023 22:11.44.239] [LOG]   Initializing new module helper ...
+[22.04.2023 22:11.44.239] [LOG]   Module helper loaded: calendar
+[22.04.2023 22:11.44.239] [LOG]   No helper found for module: compliments.
+[22.04.2023 22:11.44.239] [LOG]   No helper found for module: weather.
+[22.04.2023 22:11.44.243] [LOG]   Initializing new module helper ...
+[22.04.2023 22:11.44.243] [LOG]   Module helper loaded: newsfeed
+[22.04.2023 22:11.44.405] [LOG]   Initializing new module helper ...
+[22.04.2023 22:11.44.405] [LOG]   Module helper loaded: recipe
+[22.04.2023 22:11.44.405] [LOG]   All module helpers loaded.
+[22.04.2023 22:11.44.407] [LOG]   Starting server on port 8080 ... 
+[22.04.2023 22:11.44.409] [LOG]   Server started ...
+[22.04.2023 22:11.44.409] [LOG]   Connecting socket for: updatenotification
+[22.04.2023 22:11.44.409] [LOG]   Starting module helper: updatenotification
+[22.04.2023 22:11.44.409] [LOG]   Connecting socket for: calendar
+[22.04.2023 22:11.44.409] [LOG]   Starting node helper for: calendar
+[22.04.2023 22:11.44.409] [LOG]   Connecting socket for: newsfeed
+[22.04.2023 22:11.44.410] [LOG]   Starting node helper for: newsfeed
+[22.04.2023 22:11.44.410] [LOG]   Connecting socket for: recipe
+[22.04.2023 22:11.44.410] [LOG]   Starting node helper for: recipe
+[22.04.2023 22:11.44.410] [LOG]   Sockets connected & modules started ...
+[22.04.2023 22:11.44.410] [LOG]   
+Ready to go! Please point your browser to: http://0.0.0.0:8080
+[22.04.2023 22:12.02.369] [LOG]   Create new calendarfetcher for url: http://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics - Interval: 300000
+[22.04.2023 22:12.02.382] [LOG]   Create new newsfetcher for url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml - Interval: 300000
+[22.04.2023 22:12.02.398] [LOG]   Create new recipeFetcher.
+[22.04.2023 22:12.02.399] [LOG]   Recipe-Fetcher: fetching={"request":{"method":"POST","headers":{"Authorization":"Bearer ","Content-Type":"application/json","Accept":"application/json"},"redirect":"follow","body":"{\"model\":\"text-davinci-003\",\"prompt\":\"reccommend an asian food recipe\",\"temperature\":1,\"max_tokens\":300,\"top_p\":1,\"frequency_penalty\":0,\"presence_penalty\":0}"}}
+[22.04.2023 22:12.02.399] [LOG]   mkdir /opt/magic_mirror/dalai
+[22.04.2023 22:12.02.402] [LOG]   > query: {
+  method: 'POST',
+  headers: {
+    Authorization: 'Bearer ',
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  },
+  redirect: 'follow',
+  body: '{"model":"text-davinci-003","prompt":"reccommend an asian food recipe","temperature":1,"max_tokens":300,"top_p":1,"frequency_penalty":0,"presence_penalty":0}'
+}
+[22.04.2023 22:12.02.402] [INFO]  Checking git for module: default
+[22.04.2023 22:12.02.404] [LOG]   Recipe-Fetcher: got response=undefined
+[22.04.2023 22:12.02.519] [INFO]  Newsfeed-Fetcher: Broadcasting 26 items.
+[22.04.2023 22:12.02.834] [INFO]  Calendar-Fetcher: Broadcasting 10 events.

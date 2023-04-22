@@ -51,21 +51,36 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 	};
 
 	this.buildRequest = function () {
-		headers = {
-			Authorization: "Bearer " + this.apiKey,
-			"Content-Type": "application/json",
-			Accept: "application/json"
-		};
+		// headers = {
+		// 	Authorization: "Bearer " + this.apiKey,
+		// 	"Content-Type": "application/json",
+		// 	Accept: "application/json"
+		// };
+		// req = {
+		// 	method: this.httpMethod,
+		// 	headers: headers,
+		// 	redirect: "follow"
+		// };
+		// if (this.httpMethod == "POST") {
+		// 	data = this.buildData();
+		// 	let raw = JSON.stringify(data);
+		// 	req.body = raw;
+		// }
 		req = {
-			method: this.httpMethod,
-			headers: headers,
-			redirect: "follow"
+			model: "alpaca.7B",
+			prompt: `
+			Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+			### Instruction:
+			Suggest a recipe with instructions and an ingredient list for the given cuisine type
+			
+			### Input:
+			Asian
+			
+			### Response:
+			`,
+			skip_end: "true"
 		};
-		if (this.httpMethod == "POST") {
-			data = this.buildData();
-			let raw = JSON.stringify(data);
-			req.body = raw;
-		}
 		return req;
 	};
 
@@ -87,27 +102,33 @@ const RecipeFetcher = function (apiKey, url, httpMethod, data, updateInterval) {
 	};
 
 	this.parse = function (data) {
-		Log.log("Recipe-Fetcher: got data=" + JSON.stringify(data));
-		this.events = data.choices[0].text;
+		Log.log("Recipe-Fetcher: got data=" + data);
+		this.events = data;
 		Log.log("Recipe-Fetcher: parsed data=" + this.events);
 	};
 
 	this.awaitFetch = async function (request) {
-		request = {
-			model: "alpaca.7B",
-			prompt: "The following is a conversation between a boy and a girl:"
-		};
 		Log.log(
 			"Recipe-Fetcher: fetching=" +
 				JSON.stringify({
 					request: request
 				})
 		);
-		let response = await Llama(request);
-		Log.log("Recipe-Fetcher: got response=" + response);
-		let result = await response.json();
-		Log.log("Recipe-Fetcher: got json=" + result);
-		return result;
+		let aggregate = "";
+		let responseStarted = false;
+		const responsePattern = /.*### Response:.*/g;
+		let cb = (msg) => {
+			if (responseStarted) {
+				aggregate = aggregate.concat(msg);
+			}
+			Log.log("Recipe-Fetcher: got response from LLAMA=" + msg);
+			if (responsePattern.test(msg)) responseStarted = true;
+		};
+		await Llama(request, cb);
+
+		Log.log("Recipe-Fetcher: got aggregate from LLAMA=" + aggregate);
+
+		return aggregate;
 	};
 
 	this.setTimeout = function (time) {
