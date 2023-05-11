@@ -1,44 +1,38 @@
-ARG buildarch
 ARG BUILDER_IMG
-ARG NODE_VERSION
-ARG DEBIAN_VERSION
-ARG SLIM
-FROM ${BUILDER_IMG} as builder
-FROM ${buildarch}node:${NODE_VERSION}-${DEBIAN_VERSION}
-LABEL maintainer="Kyle Ong"
 
-USER root
+FROM ${BUILDER_IMG} as builder
 
 WORKDIR /opt/magic_mirror
 
-# copy startscripts into container:
 COPY scripts/build_info.sh /opt/magic_mirror/
 COPY docker/entrypoint.sh /opt/magic_mirror/
-COPY --from=builder --chown=node:node /opt/magic_mirror /opt/magic_mirror
+ADD . ./
 
-# procps, arp-scan and sudo needed for the module MMM-NetworkScanner
-# sudo needed for the module MMM-Remote-Control
-# sudo needed for cp in entrypoint
-ARG GIT_INFO
-ARG buildarch
-ARG NODE_ENV
-ARG DEBIAN_VERSION
 RUN set -e; \
+    chmod +x ./build_info.sh; \
+    chmod +x ./entrypoint.sh;
+
+# Install Magic Mirror and its dependencies
+RUN set -e; \
+    node -v; \
+    echo "now executing: npm install ${npmargs}"; \
+    npm install ${npmargs}; \
+    npm install -g nodemon; \
+    sed -i "s:address\: \"localhost\":address\: \"0.0.0.0\":" config/config.js.sample; \
+    sed -i "s:ipWhitelist\: \[.*\],:ipWhitelist\: \[\],:" config/config.js.sample; \
+    mkdir mount_ori; \
+    mv modules mount_ori/; \
+    mv config mount_ori/; \
+    mv css mount_ori/; \
+    cp -r js mount_ori/; \
+    # remove not needed node_modules stuff
+    ./build_info.sh "Artifacts" "$GIT_INFO"; 
+
+RUN set -e; \
+    node -v ; \
+    useradd -ms /bin/bash node; \
     apt-get update; \
     DEBIAN_FRONTEND=noninteractive apt-get -qy --no-install-recommends install git nano sudo gettext-base openssl ca-certificates wget tini gnupg; \
-    if [ ! -z "${buildarch}" ] || [ "${NODE_ENV}" = "test" ]; then \
-      _pck="${_pck} libgtk-3-0 libx11-xcb-dev libnss3-dev libxss1 libxtst6 libasound2 libdrm2 libgbm1 libxshmfence1 fonts-arphic-uming procps arp-scan"; \
-      if [ "${buildarch}" = "arm64v8/" ]; then \
-        # install pi stuff
-        _pck="${_pck} libraspberrypi-bin"; \
-        wget https://archive.raspbian.org/raspbian.public.key -O - | apt-key add -; \
-        echo 'deb http://raspbian.raspberrypi.org/raspbian/ '${DEBIAN_VERSION}' main contrib non-free rpi' | tee -a /etc/apt/sources.list; \
-        wget -O - http://archive.raspberrypi.org/debian/raspberrypi.gpg.key | sudo apt-key add -; \
-        echo 'deb http://archive.raspberrypi.org/debian/ '${DEBIAN_VERSION}' main ui' | tee -a /etc/apt/sources.list.d/raspi.list; \
-        apt-get update; \
-      fi; \
-    fi; \
-    [ "${NODE_ENV}" = "test" ] && _pck="${_pck} xvfb"; \
     DEBIAN_FRONTEND=noninteractive apt-get -qy --no-install-recommends install ${_pck}; \
     DEBIAN_FRONTEND=noninteractive apt-get -qy remove gnupg; \
     apt-get clean; \
@@ -51,15 +45,15 @@ RUN set -e; \
     ./build_info.sh "Runtime" "$GIT_INFO"; \
     rm -f build_info.sh;
 
-USER node
+USER node    
 
-ARG NODE_ENV
 ENV ELECTRON_DISABLE_SANDBOX=1 \
     ELECTRON_DISABLE_GPU=1 \
     DBUS_SESSION_BUS_ADDRESS="unix:path=/var/run/dbus/system_bus_socket" \
     NODE_ENV=${NODE_ENV} \
     MM_OVERRIDE_DEFAULT_MODULES=true \
-    MM_OVERRIDE_CSS=true
+    MM_OVERRIDE_CSS=true \
+    MM_OVERRIDE_JS=true
 
 EXPOSE 8080
 
